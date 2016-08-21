@@ -23,4 +23,4 @@ func main() {
 
 
 
-// :nnoremap <c-@>gorun :!go run main.go > gorunlog.txt<nl>
+// :nnoremap <c-@>gorun :!go run % > gorunlog.txt<nl>

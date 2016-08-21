@@ -1,12 +1,26 @@
+// scriptencoding utf-8
+
 package main
 
-import "fmt"
+import (
+	"time"
+	"fmt"
+)
 
 func main() {
 
 	fmt.Printf("hello go\n")
-	fmt.Printf("hello")
-	fmt.Printf("hello")
-	fmt.Printf("\n\n\n\n\ntset\t\ttest\n")
 
+	str := "hello"
+	fmt.Printf("%s\n", str)
+
+
+	fmt.Println("welcome to the go tuto!")
+	fmt.Println("The time is" , time.Now())
+	fmt.Println("go run test")
 }
+
+
+
+
+// :nnoremap <c-@>gorun :!go run main.go > gorunlog.txt<nl>

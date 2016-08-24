@@ -1,4 +1,3 @@
-
 package main
 
 import (
@@ -7,38 +6,38 @@ import (
 	"math/cmplx"
 )
 
+/// {{{ variable types
 // from gotuto
 var (
-	ToBe	bool		= false
-	MaxInt	uint64		= 1<<64 -1
-	z		complex128	= cmplx.Sqrt(-5 + 12i)
+	ToBe   bool       = false
+	MaxInt uint64     = 1<<64 - 1
+	z      complex128 = cmplx.Sqrt(-5 + 12i)
 )
 
-
 var (
-	boolean		bool	=	true
-	str			string	=	"this string"
+	boolean bool   = true
+	str     string = "this string"
 
 	// 型はコンストラクタを持ってるっぽい
-	integer		int		=	int(10)
-	integer8	int8	=	int8(8)
-	integer32	int32	=	int32(32)
-	integer64	int64	=	int64(64)
+	integer   int   = int(10)
+	integer8  int8  = int8(8)
+	integer32 int32 = int32(32)
+	integer64 int64 = int64(64)
 
-	uinteger	uint	=	10
-	uinteger8	uint8	=	8
-	uinteger32	uint32	=	32
-	uinteger64	uint64	=	64
+	uinteger   uint   = 10
+	uinteger8  uint8  = 8
+	uinteger32 uint32 = 32
+	uinteger64 uint64 = 64
 
-	ptr			uintptr
-	bit8		byte	=	100
-	unicode		rune	=	'a'
+	ptr     uintptr
+	bit8    byte = 100
+	unicode rune = 'a'
 
-	floating32	float32	=	10.123456789
-	floating64	float64	=	100.123456789
+	floating32 float32 = 10.123456789
+	floating64 float64 = 100.123456789
 
-	com64		complex64	=	complex64(1)
-	com128		complex128	=	cmplx.Sqrt(-5 + 12i)
+	com64  complex64  = complex64(1)
+	com128 complex128 = cmplx.Sqrt(-5 + 12i)
 )
 
 // -----| goの組み込み型 |-----
@@ -62,17 +61,17 @@ func zeroValus() {
 		s string
 	)
 	fmt.Printf("%v %v %v %q", i, f, b, s)
-		// %qはダブルクォート方式のエスケープ
+	// %qはダブルクォート方式のエスケープ
 	fmt.Println()
 }
 
-func main() {
-
+// goの変数の型を確認
+func basicTypes() {
 	// %v --デフォルトフォーマット?
-		// autoで型を出すことを言っているのか?
+	// autoで型を出すことを言っているのか?
 	// %T --goスタイルのフォーマット?
-		// TODO:ちょっと何を言ってるか理解してないので後で調べる
-		// 調べてないけど多分%Tがタイプを表示して%vが元の型で値を表示するだけ
+	// TODO:ちょっと何を言ってるか理解してないので後で調べる
+	// 調べてないけど多分%Tがタイプを表示して%vが元の型で値を表示するだけ
 
 	// format
 	const f = "%T(%v)\n"
@@ -81,7 +80,6 @@ func main() {
 	fmt.Printf(f, ToBe, ToBe)
 	fmt.Printf(f, MaxInt, MaxInt)
 	fmt.Printf(f, z, z)
-
 
 	// variable list view
 	varlist := list.New()
@@ -129,7 +127,24 @@ func main() {
 	zeroValus()
 	fmt.Println()
 
+	return
+}
+/// variable types }}}
+
+/// array {{{
+// display slice
+func dispSlice(slice []int) {
+	fmt.Println(slice)
+	for _, x := range slice{
+		fmt.Printf("%c\n", x)
+	}
+	fmt.Println()
+	return
+}
+
+func array() {
 	// array
+	fmt.Println("配列")
 	var a [4]int
 	fmt.Println(a)
 	a[0] = 1
@@ -141,8 +156,45 @@ func main() {
 	// 範囲外アクセスはコンパイルエラー
 	// fmt.Printf("%v %v", a[4], a[-1])
 
+	// 整数と文字
+	fmt.Println("整数と文字")
+	a[0] = 97
+	a[1] = 98
+	a[2] = 99
+	a[3] = 100
+	fmt.Printf("%s\n", a) // aは配列全体を指していて、先頭要素へのポインタではない
+	fmt.Printf("%q\n", a)
+	fmt.Printf("%x\n", a) // 2文字の16進数表記
+	fmt.Printf("%p\n", a)
+	for _, x := range a {
+		fmt.Printf("%c\n", x)
+	}
+	fmt.Println()
+
+
+	// スライス
+	fmt.Println("スライス")
+	letter := []int{97, 98, 99, 100}
+	dispSlice(letter)
+	// 範囲を指定して削る 1<= ... >3  // [3]の要素から含まれない
+	fmt.Println("スライスの範囲指定")
+	slice := letter[1:3]
+	dispSlice(slice)
+	// sliceの省略
+	fmt.Println("スライスの省略")
+	slice_1 := letter[:] // [0] <= [3]
+	dispSlice(slice_1)
+	slice_2 := letter[1:] // [1]<
+	dispSlice(slice_2)
+	slice_3 := letter[:3] // >[3]
+	dispSlice(slice_3j
+}
+/// array }}}
+
+func main() {
+
+	basicTypes()
+	array()
 
 	return
 }
-
-

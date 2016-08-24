@@ -53,13 +53,26 @@ var (
 
 // NOTE:int uint uintptrはシステムに合わせて 32bit or 64bit が使われる
 
+// 変数の初期値は決まっていて代入がなければ初期化されるらしい
+func zeroValus() {
+	var (
+		i int
+		f float64
+		b bool
+		s string
+	)
+	fmt.Printf("%v %v %v %q", i, f, b, s)
+		// %qはダブルクォート方式のエスケープ
+	fmt.Println()
+}
+
 func main() {
 
 	// %v --デフォルトフォーマット?
 		// autoで型を出すことを言っているのか?
 	// %T --goスタイルのフォーマット?
 		// TODO:ちょっと何を言ってるか理解してないので後で調べる
-		// 調べてないけど多分%Tがタイプを表示して%vが値を表示するだけ
+		// 調べてないけど多分%Tがタイプを表示して%vが元の型で値を表示するだけ
 
 	// format
 	const f = "%T(%v)\n"
@@ -101,6 +114,20 @@ func main() {
 		tmp := e.Value
 		fmt.Printf(f, tmp, tmp)
 	}
+	fmt.Println()
+
+	// another format
+	const f2 = "%T(%v) %#v\n"
+	for e := varlist.Front(); e != nil; e = e.Next() {
+		tmp := e.Value
+		fmt.Printf(f2, tmp, tmp, tmp)
+		// #付きと付いてないフォーマットの違いがいまいちつかめてない
+	}
+	fmt.Println()
+
+	// 変数の初期値
+	zeroValus()
+
 
 	return
 }

@@ -23,7 +23,7 @@ func add_another(x, y int) int {
 }
 
 // hello world
-func hello_go(){
+func hello_go() {
 
 	// hello world
 	fmt.Printf("hello go\n")
@@ -59,24 +59,85 @@ func hello_go(){
 
 	// 関数定義の上下は問題無いっぽい
 	fmt.Println("string swap")
-	x, y := "hello" , "world"
+	x, y := "hello", "world"
 	fmt.Printf("%s\n", x+y)
 	x, y = swap(x, y)
 	fmt.Printf("%s\n", x+y)
 	fmt.Println()
 
+	// naked return
+	fmt.Println(split(17))
+	i, z := split(27)
+	fmt.Println(i, z)
+	fmt.Println()
+
+	return
 }
 
-// 引数を入れ替えて返す
+// 引数を入れ替えて返す,goは複数の戻り値を持つことができる
 func swap(x, y string) (string, string) {
 	return y, x
 }
 
+// 戻り値の変数名
+func split(sum int) (x, y int) {
+	x = sum * 4 / 9
+	y = sum - x
+
+	// naked return
+	return
+}
+
+// variables, 全てbool型になる
+var c, python, java bool
+
+func variable() {
+	var i int
+	fmt.Println(i, c, python, java)
+	return
+}
+
+// var initalizer
+var i, j int = 1, 2
+
+func var_ini() {
+	var c, python, java = true, false, "no!"
+	fmt.Println(i, j, c, python, java)
+	return
+}
+
+// 暗黙の型宣言
+var test = "test"
+
+func short_var() {
+	fmt.Println(test)
+
+	// := は関数内で使える暗黙の代入文
+	test := "short variable declaration"
+	fmt.Println(test)
+
+	var i, j int = 1, 2
+	k := 3
+	c, python, java := true, false, "no!"
+	fmt.Println(i, j, k, c, python, java)
+
+	return
+}
+
 func main() {
 	hello_go()
+	fmt.Println()
 
+	variable()
+	fmt.Println()
 
+	var_ini()
+	fmt.Println()
 
+	short_var()
+	fmt.Println()
+
+	return
 }
 
 // NOTE:レジスタを使ってコマンドを貼り付ける時は<C-r>"で実現できる

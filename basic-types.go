@@ -96,6 +96,7 @@ func main() {
 	varlist.PushBack(com64)
 	varlist.PushBack(com128)
 
+	// display to variable
 	for e := varlist.Front(); e != nil; e = e.Next() {
 		tmp := e.Value
 		fmt.Printf(f, tmp, tmp)

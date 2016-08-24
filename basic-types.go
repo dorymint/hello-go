@@ -127,6 +127,19 @@ func main() {
 
 	// 変数の初期値
 	zeroValus()
+	fmt.Println()
+
+	// array
+	var a [4]int
+	fmt.Println(a)
+	a[0] = 1
+	fmt.Println(a)
+	i := a[0]
+	fmt.Println(i)
+	fmt.Printf("%v (%T)\n", a, a)
+	fmt.Printf("%v %v\n", a[0], a[1])
+	// 範囲外アクセスはコンパイルエラー
+	// fmt.Printf("%v %v", a[4], a[-1])
 
 
 	return

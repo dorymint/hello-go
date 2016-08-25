@@ -187,7 +187,7 @@ func array() {
 	slice_2 := letter[1:] // [1]<
 	dispSlice(slice_2)
 	slice_3 := letter[:3] // >[3]
-	dispSlice(slice_3j
+	dispSlice(slice_3)
 }
 /// array }}}
 

@@ -48,4 +48,6 @@ func main() {
 	fmt.Println()
 	pointer_2()
 
+	// NOTE:ポインタ演算はない
+
 }

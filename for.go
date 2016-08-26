@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"math"
 	"runtime"
+	"time"
 )
 
 /// loop tutorial {{{
@@ -54,10 +55,11 @@ func loop() {
 	fmt.Println()
 	return
 }
-/// loop tutorial }}}
+/// loop tutorial end }}}
 
 
 /// if tutorial {{{
+
 func sqrt(x float64) string {
 	if x < 0 {
 			return sqrt(-x) + "i"
@@ -117,11 +119,11 @@ func iftuto() {
 
 	return
 }
-/// if tutorial }}}
+/// if tutorial end }}}
 
 /// switch {{{
-func switchtuto() {
-
+func switch_1() {
+	// goのswitchはデフォルトでbreakする
 	fmt.Println("Go runs on ")
 	switch os := runtime.GOOS; os {
 	case "darwin":
@@ -135,13 +137,51 @@ func switchtuto() {
 	}
 	return
 }
-/// switch }}}
+
+func switch_2() {
+	// switchのケースに式を使う
+	fmt.Println("When's Saturday?")
+	tody := time.Now().Weekday()
+	switch time.Saturday {
+	case tody + 0:
+		fmt.Println("Tody.")
+	case tody + 1:
+		fmt.Println("Tomorrow.")
+	case tody + 2:
+		fmt.Println("In two days.")
+	default:
+		fmt.Println("Too far away.")
+	}
+	return
+}
+
+func switch_3() {
+	// 条件のないswitch
+	t := time.Now()
+	// switch ture {} と同義,caseで条件分岐(if else ifの代替)
+	switch {
+	case t.Hour() < 12:
+		fmt.Println("Good morning!")
+	case t.Hour() < 17:
+		fmt.Println("Good afternoon.")
+	default:
+		fmt.Println("Good evening.")
+	}
+
+	return
+}
+
+func switchtuto() {
+	switch_1()
+	switch_2()
+	switch_3()
+	return
+}
+/// switch end }}}
 
 func main() {
 	loop()
-
 	iftuto()
-
 	switchtuto()
 }
 

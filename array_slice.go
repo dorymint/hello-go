@@ -2,6 +2,7 @@ package main
 
 import (
 	"fmt"
+	"golang.org/x/tour/pic"
 	"strings"
 )
 
@@ -275,6 +276,53 @@ func slice_8() {
 	return
 }
 
+// range
+func sliceRange() {
+	// sliceに対するrangeは要素数のカウンタと要素のコピーを返す
+
+	fmt.Println("sliceRange")
+
+	var pow = []int{1, 2, 4, 8, 16, 32, 64, 128, 256}
+	for i, v := range(pow) {
+		fmt.Printf("2**%d = %d\n", i, v)
+	}
+
+
+	// _(アンダースコア)を変数名にするとデータを使わないことを明示できる
+	// 返ってきた変数を使わなくてもエラーにならない
+	pow_2 := make([]int, 10)
+	for i := range pow_2 {
+		pow_2[i] = 1 << uint(i) // == 2**i
+	}
+	for _, pow_2 := range(pow_2) {
+		fmt.Printf("%d\n", pow_2)
+	}
+	return
+}
+
+
+func slicePic() {
+	fmt.Println("slicePic")
+
+	Pic := func (dx, dy int) [][]uint8 {
+		slice := make([][]uint8, dy)
+		elm := make([]uint8, dx)
+
+		for i, _ := range(slice) {
+			for _, e := range(elm) {
+				slice[i] = append(slice[i], e)
+			}
+		}
+		// 取り敢えず初期化だけ
+		return slice
+	}
+
+	// 表示はブルースケール全部0の初期値で青一色
+	pic.Show(Pic)
+
+	return
+}
+
 func main() {
 
 	array_1()
@@ -295,6 +343,12 @@ func main() {
 	fmt.Println()
 	slice_8()
 	fmt.Println()
+	sliceRange()
+	fmt.Println()
+	slicePic()
+	fmt.Println()
+
+
 
 
 }

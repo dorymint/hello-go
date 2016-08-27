@@ -85,7 +85,7 @@ func newton(x float64) float64 {
 	z := float64(5)
 	i := 0
 	for ; i < 10000; i++ {
-		x2 = z - (z * z - x) / (2*z * x)
+		x2 = z - (z * z - x) / (2 * x)
 
 		if math.Abs(x2 - z) < 0.0000001 { break }
 

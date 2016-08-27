@@ -34,7 +34,15 @@ func stringCack() {
 	return
 }
 
+// 美しすぎる
+func love() string {
+	return string('生' & '死')
+}
+
 // goの動作でちょっと気になったことの確認用
 func main() {
 	stringCack()
+
+	fmt.Println(love())
+
 }

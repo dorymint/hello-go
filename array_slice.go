@@ -305,8 +305,8 @@ func slicePic() {
 	fmt.Println("slicePic")
 
 	Pic := func (dx, dy int) [][]uint8 {
-		slice := make([][]uint8, dy)
-		elm := make([]uint8, dx)
+		slice := make([][]uint8, dy) // データマップ
+		elm := make([]uint8, dx) // 一列のドットデータ
 
 		for i, _ := range(slice) {
 			for _, e := range(elm) {
@@ -317,7 +317,13 @@ func slicePic() {
 		return slice
 	}
 
-	// 表示はブルースケール全部0の初期値で青一色
+	// この関数の仕様はsrc見てないからよくわかってないけど、チュートを見る限り
+	// 1, 関数オブジェクトを受けて画像のsrcを吐く
+	// 2, dx,dyが表示の幅
+	// 3, 二次元配列の[][]uint8でグレースケールを返す関数オブジェクトを引数に取る
+	// ...ということらしい dx * dy の[][]uint8を返す関数を食わせてみる
+	// ブラウザの表示ではブルースケールで,全部0の初期値は青一色だった
+	// コンソールではイメージのsrcが出てきた
 	pic.Show(Pic)
 
 	return
@@ -347,8 +353,5 @@ func main() {
 	fmt.Println()
 	slicePic()
 	fmt.Println()
-
-
-
 
 }

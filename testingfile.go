@@ -21,7 +21,7 @@ func stringCack() {
 	// fmt.Println(empty)
 
 	var key string
-	for _, r := range(s) {
+	for _, r := range s {
 		if r != ' ' {
 			key += string(r)
 			key += ""
@@ -35,9 +35,7 @@ func stringCack() {
 }
 
 // 美しすぎる
-func love() string {
-	return string('生' & '死')
-}
+func love() string { return string('生' & '死') }
 
 // goの動作でちょっと気になったことの確認用
 func main() {

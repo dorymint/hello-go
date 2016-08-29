@@ -97,7 +97,6 @@ func wordCount() {
 		}
 		// ループで空文字をトリガーにした処理が最後に実行されないため取り敢えず
 		if key != "" { result[key]++ }
-
 		return result
 	}
 

@@ -66,19 +66,18 @@ func main() {
 	}
 	puts(v)
 
+	main2()
+
 }
 
-func ext() {
-	type I interface {
-		M()
-	}
 
-	type T struct {
-		S string
-	}
+type I interface { M() }
+type T struct { S string }
 
-	// TODO:methodを関数ないで定義できないか?
+// interfaceを実装することを明示する必要は無い
+func (t T) M() { fmt.Println(t.S) }
 
+func main2() {
 	var i I = T{"hello"}
 	i.M()
 }

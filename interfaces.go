@@ -21,9 +21,8 @@ type MyFloat float64
 func (f MyFloat) Abs() float64 {
 	if f < 0 {
 		return float64(-f)
-	} else {
-		return float64(f)
 	}
+	return float64(f)
 }
 
 // ポインタレシーバ
@@ -59,7 +58,7 @@ func main() {
 	fmt.Println(a.Abs())
 
 
-	// 汎用interface使ってジェネリックっぽいのが作れた
+	// 汎用interface使ってジェネリクスっぽいの
 	type inter interface{}
 	puts := func (T inter) {
 		format := "%T %v\n"
@@ -67,5 +66,20 @@ func main() {
 	}
 	puts(v)
 
+}
+
+func ext() {
+	type I interface {
+		M()
+	}
+
+	type T struct {
+		S string
+	}
+
+	// TODO:methodを関数ないで定義できないか?
+
+	var i I = T{"hello"}
+	i.M()
 }
 

@@ -32,6 +32,7 @@ func run() error {
 
 func main() {
 	// run()を実行しerrorが返っていれば処理
+	// errorのチェックは != nil で行う、変数がnilならエラーは返っていない
 	if err := run(); err != nil {
 		// 型の確認
 		fmt.Printf("%T\n\n", err)

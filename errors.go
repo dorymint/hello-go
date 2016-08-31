@@ -2,6 +2,10 @@ package main
 
 // 少し多めにコメント書きながら確認する
 
+/* stringer と同じように error にも組み込みインターフェースがある */
+// type error interface { Error() string }
+// fmtが変数を文字列で出力する時errorインターフェースか確認する
+
 import (
 	"fmt"
 	"time"
@@ -33,6 +37,8 @@ func main() {
 		fmt.Printf("%T\n\n", err)
 		// メッセージの確認
 		fmt.Println(err)
+		// 今のところerror型とstring型の違いが見えないけど
+		// 多分出力先が >&2 になってそう
 	}
 }
 

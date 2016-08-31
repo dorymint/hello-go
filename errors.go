@@ -1,0 +1,38 @@
+package main
+
+// 少し多めにコメント書きながら確認する
+
+import (
+	"fmt"
+	"time"
+)
+
+// errorの形式を決める
+type myError struct {
+	When time.Time // 時刻を記録できる変数、error発生時の時刻を記録
+	What string // errorメッセージ
+}
+// errorメッセージを作って返す
+func (e *myError) Error() string {
+	return fmt.Sprintf("at %v, %s", e.When, e.What)
+}
+
+// errorが発生する可能性のある関数とする
+func run() error {
+	// error処理、実体を作りポインタで返す
+	return &myError{
+		time.Now(), // 現在時刻の取得
+		"it didn't work.",
+	}
+}
+
+func main() {
+	// run()を実行しerrorが返っていれば処理
+	if err := run(); err != nil {
+		// 型の確認
+		fmt.Printf("%T\n\n", err)
+		// メッセージの確認
+		fmt.Println(err)
+	}
+}
+

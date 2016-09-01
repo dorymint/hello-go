@@ -79,21 +79,38 @@ func pow(x, n, lim float64) float64 {
 }
 
 // ニュートン法を使った収束
+// よく理解できてないやばい
 func newton(x float64) float64 {
 	// TODO
-	x2 := float64(x)
-	z := float64(5)
+	if x < 0 { return x }
+	z := x + 1
+	tmp := x // ループ離脱の比較用
+
+	i := 0 // ループ回数表示のため
+	for ; i < 10000; i++ {
+		z = z - (z * z - x) / (2 * z)
+		if math.Abs(z - tmp) < 0.000000001 { break }
+		tmp = z
+	}
+	defer func() { fmt.Println("oder ", x, "loop cout = ", i) }()
+	return z
+}
+// 調べるとこの書き方もあった
+func newton2(x float64) float64 {
+
+	xn := float64(0)
+	for ; xn * xn < x; xn++ {}
+
+	tmp := x
 	i := 0
 	for ; i < 10000; i++ {
-		x2 = z - (z * z - x) / (2 * x)
-
-		if math.Abs(x2 - z) < 0.0000001 { break }
-
-		z = x2
-
+		xn = (xn*xn + x) / (2 * xn)
+		if math.Abs(xn - tmp) < 0.0000001 { break }
+		tmp = xn
 	}
-	fmt.Println("loop cout = ", i)
-	return x2
+
+	defer func() { fmt.Println("oder ", x, "loop cout = ", i) }()
+	return xn
 }
 
 func iftuto() {
@@ -110,12 +127,22 @@ func iftuto() {
 	// newton
 	fmt.Println("newton")
 	for i := 1; i < 10; i++ {
-		fmt.Println("i = ", i)
-		fmt.Println(sqrt(float64(i)))
 		fmt.Println(newton(float64(i)))
+		fmt.Println(sqrt(float64(i)), " math.Sqrt")
 		fmt.Println()
 	}
 	fmt.Println()
+
+	// 正解っぽいの
+	fmt.Println("newton2")
+	for i := 1; i < 10; i++ {
+		fmt.Println(newton2(float64(i)))
+		fmt.Println(sqrt(float64(i)), " math.Sqrt")
+		fmt.Println()
+	}
+	fmt.Println()
+
+
 
 	return
 }

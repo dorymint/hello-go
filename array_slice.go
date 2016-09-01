@@ -34,6 +34,7 @@ func slice_1() {
 
 	primes := [6]int{2, 3, 5, 7, 11, 13}
 
+	// 要素数のない[]はスライスの宣言になる
 	var s []int = primes[1:4]
 	fmt.Println(s)
 
@@ -243,7 +244,7 @@ func slice_8() {
 	var s []int
 	printSlice(s)
 
-	// capacityが足りなければ新しく確保した領域で拡張されたsliceを作る
+	// capacityが足りなければ新しく確保したarrayの実体を作り、そのsliceを作る
 	// 元のスライスとは異なるsliceの実体を返すっぽい?
 	s = append(s, 0)
 	printSlice(s)
@@ -256,6 +257,7 @@ func slice_8() {
 
 
 	// capacityを多めにとったslice
+	// capacityが多いということは本体のarrayの容量が多いということ
 	fmt.Println("\ncapacityを多めにとったスライス")
 	s_2 := make([]int, 0, 10)
 	printSlice(s_2)
@@ -268,6 +270,8 @@ func slice_8() {
 
 	s_2 = append(s_2, 2, 3, 4)
 	printSlice(s_2)
+
+	// 事前にメモリ確保してるので新しく配列を作らない分高速
 
 
 	// どちらもアドレスが変わってる、capacity多めにとっても
@@ -305,7 +309,7 @@ func slicePic() {
 	fmt.Println("slicePic")
 
 	Pic := func (dx, dy int) [][]uint8 {
-		slice := make([][]uint8, dy) // データマップ
+		slice := make([][]uint8, dy) // 一列のドットデータへのデータマップ
 		elm := make([]uint8, dx) // 一列のドットデータ
 
 		for i, _ := range(slice) {
@@ -314,6 +318,15 @@ func slicePic() {
 			}
 		}
 		// 取り敢えず初期化だけ
+		// forの中とかエレメントにアクセスして数値変えると濃淡で表現できる...はず
+
+		// 色付け
+		for i, _ := range(slice) {
+			for j, _ := range(slice[i]) {
+				slice[i][j] = uint8(j*i)
+			}
+		}
+
 		return slice
 	}
 

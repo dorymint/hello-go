@@ -37,10 +37,18 @@ func stringCack() {
 // 美しすぎる
 func love() string { return string('生' & '死') }
 
+func typeCeck() {
+	var i byte = 'A'
+	fmt.Printf("%v, %T\n", i, i)
+	i++
+	fmt.Printf("%v, %T\n", i, i)
+
+}
+
 // goの動作でちょっと気になったことの確認用
 func main() {
+
+	typeCeck()
 	stringCack()
-
 	fmt.Println(love())
-
 }

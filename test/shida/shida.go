@@ -6,6 +6,7 @@
 package main
 
 import (
+	"fmt"
 	"image"
 	"image/color"
 	"image/draw"
@@ -18,9 +19,9 @@ import (
 
 var (
 	N	int	=	20
-	xm	float64	=	0.0
-	ym	float64	=	0.6
-	h	float64	=	0.6
+	//xm	float64	=	0.0
+	//ym	float64	=	0.6
+	//h	float64	=	0.6
 )
 
 var (
@@ -30,7 +31,9 @@ var (
 )
 
 var (
+	// 白
 	bgcolor color.Color = color.RGBA{255, 255, 255, 255}
+	// 緑
 	linecolor color.Color = color.RGBA{0, 128, 0, 255}
 )
 
@@ -87,7 +90,15 @@ func f(m *image.RGBA, k int, x, y float64) {
 func main() {
 	rand.Seed(time.Now().Unix())
 
+	// RGBA キャンバス
 	m := image.NewRGBA(image.Rect(0, 0, width, height))
+	fmt.Printf("%T\n", m)
+
+	fmt.Printf("%T, %v\n", draw.Src, draw.Src)
+	fmt.Printf("%T, %v\n", image.ZP, image.ZP)
+
+	imuni := &image.Uniform{bgcolor}
+	fmt.Printf("%T, %v\n", imuni, imuni)
 
 	draw.Draw(m, m.Bounds(), &image.Uniform{bgcolor}, image.ZP, draw.Src)
 
@@ -104,10 +115,4 @@ func main() {
 		log.Fatal(err)
 	}
 }
-
-
-
-
-
-
 

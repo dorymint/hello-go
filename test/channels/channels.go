@@ -58,6 +58,7 @@ func channelClose() {
 			x, y = y, x+y
 		}
 		// 送り手が送信する値がなくなったことを示すためにchannelをcloseできる
+		// closeしてるとfalseが返る
 		close(c)
 		// c <- 1 // closeしたchannelへ送信すると実行時エラー
 	}
@@ -144,7 +145,7 @@ func selectCase() {
 	i, ok := <-test
 	fmt.Printf("%T,%v\n",i, ok)
 
-	// error吐く
+	// 下はerror吐く
 	//v, ok := <-c
 	//fmt.Println(v, ok)
 

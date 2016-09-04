@@ -142,7 +142,7 @@ func selectCase() {
 	test := make(chan int)
 	go func(){test <- 10}()
 	i, ok := <-test
-	fmt.Printf("%T,%v",i, ok)
+	fmt.Printf("%T,%v\n",i, ok)
 
 	// error吐く
 	//v, ok := <-c
@@ -158,6 +158,25 @@ func selectCase() {
 	// あるいは入力を別スレッドにしないと deadlockする...deadlockする
 }
 
+// select default timecount
+func selectGoroutine() {
+	tick := time.Tick(100 * time.Millisecond)
+	boom := time.After(500 * time.Millisecond)
+	fmt.Printf("%T%v\n", tick, tick) // 200?
+	fmt.Printf("%T%v\n", boom, boom) // 1000?
+	for {
+		select {
+		case <-tick:
+			fmt.Println("tick.")
+		case <-boom:
+			fmt.Println("BOOM!!")
+			return
+		default: // 上記2つのケースが実行できない時だけ走る
+			fmt.Println("    .")
+			time.Sleep(50 * time.Millisecond)
+		}
+	}
+}
 
 // goroutine と channel
 func main() {
@@ -190,6 +209,9 @@ func main() {
 
 	fmt.Println("\n call selectCase")
 	selectCase()
+
+	fmt.Println("\n call selectGoroutine")
+	selectGoroutine()
 }
 
 // NOTE:channel operator は goroutine を同期する

@@ -105,7 +105,6 @@ func (t *Tree) insertLR(n int, s string) *Tree {
 
 // Insert 指定したrootから値を比較し昇順左詰めでnodeを作る
 // from:"golang.org/x/tour/tree"
-// トップダウンで値を入れてる
 func Insert(t *Tree, n int) *Tree {
 	if t == nil {
 		return NewTree(nil, n, "new")

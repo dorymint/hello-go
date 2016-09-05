@@ -18,7 +18,6 @@ func (p infinityReader) Read(b []byte) (int, error) {
 	for i := range(b) {
 		b[i] = byte('A')
 		n++
-	// TODO:break
 	}
 	return n, nil
 }

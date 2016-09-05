@@ -18,7 +18,7 @@ import (
 
 // TODO:'A'を無限に出力するReaderの実装
 type InfinityAReader struct {}
-// error型はnil返せばいいのでこのError()は必要なかった
+// error型はnil返せばいいのでこのError()はなくても一応大丈夫
 func (p *InfinityAReader) Error() string {
 	return fmt.Sprintf("eol")
 }

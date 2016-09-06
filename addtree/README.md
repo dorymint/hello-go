@@ -4,9 +4,12 @@ A Tour of Go 進める
 
 
 
+
+
+
 ```txt:./tree.txt
 
-./
+../
 ├── README.md
 ├── addtree
 │   ├── README.md
@@ -78,4 +81,7 @@ A Tour of Go 進める
 25 directories, 42 files
 
 ```
+
+
+
 

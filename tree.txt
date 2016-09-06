@@ -1,11 +1,3 @@
-# hello-go
-
-A Tour of Go 進める
-
-
-
-```txt:./tree.txt
-
 ./
 ├── README.md
 ├── addtree
@@ -76,6 +68,3 @@ A Tour of Go 進める
     └── images.go
 
 25 directories, 42 files
-
-```
-

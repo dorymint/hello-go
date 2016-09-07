@@ -1,6 +1,8 @@
 # hello-go
 
-A Tour of Go 進める
+A Tour of Go complete
+
+コード書いてて試したスニペットをたまに足す
 
 
 ```txt:./tree.txt

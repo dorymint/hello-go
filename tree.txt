@@ -24,7 +24,7 @@
 │   └── errors.go
 ├── function
 │   └── function-values.go
-├── goroutins.go
+├── goroutins
 │   └── goroutins.go
 ├── gorunlog.txt
 ├── hello
@@ -63,8 +63,10 @@
 │   └── shida.png
 ├── testingfile.go
 ├── tree.txt
-└── use_image_package
-    ├── images-pic.go
-    └── images.go
+├── use_image_package
+│   ├── images-pic.go
+│   └── images.go
+└── web_crawler
+    └── web_crawler.go
 
-25 directories, 42 files
+26 directories, 43 files

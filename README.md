@@ -3,7 +3,6 @@
 A Tour of Go 進める
 
 
-
 ```txt:./tree.txt
 
 ./
@@ -32,7 +31,7 @@ A Tour of Go 進める
 │   └── errors.go
 ├── function
 │   └── function-values.go
-├── goroutins.go
+├── goroutins
 │   └── goroutins.go
 ├── gorunlog.txt
 ├── hello
@@ -71,12 +70,13 @@ A Tour of Go 進める
 │   └── shida.png
 ├── testingfile.go
 ├── tree.txt
-└── use_image_package
-    ├── images-pic.go
-    └── images.go
+├── use_image_package
+│   ├── images-pic.go
+│   └── images.go
+└── web_crawler
+    └── web_crawler.go
 
-25 directories, 42 files
+26 directories, 43 files
 
 ```
-
 

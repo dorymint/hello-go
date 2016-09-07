@@ -362,8 +362,10 @@ func main() {
 	fmt.Println()
 	slice_8()
 	fmt.Println()
+
 	sliceRange()
 	fmt.Println()
+
 	slicePic()
 	fmt.Println()
 

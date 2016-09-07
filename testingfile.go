@@ -34,7 +34,7 @@ func stringCack() {
 	return
 }
 
-// 美しすぎる
+// love
 func love() string { return string('生' & '死') }
 
 func typeCeck() {

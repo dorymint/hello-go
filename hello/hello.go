@@ -16,7 +16,7 @@ func add(x int, y int) int {
 	return x + y
 }
 
-// NOTE:golintはキャメルケースを推奨してるっぽい?下はgolintで注意される
+// NOTE:golintはキャメルケースを推奨してるっぽい?スネークケースはgolintで注意される
 // 引数の型は最後の引数と同じなら省略できる
 func add_another(x, y int) int {
 	return x + y
@@ -140,5 +140,6 @@ func main() {
 	return
 }
 
+// vim
 // NOTE:レジスタを使ってコマンドを貼り付ける時は<C-r>"で実現できる
 // :nnoremap <c-@>gorun :!go run % > gorunlog.txt 2>&1<nl>

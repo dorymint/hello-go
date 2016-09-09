@@ -45,10 +45,19 @@ func typeCeck() {
 
 }
 
+// 除算テスト
+func quotientRemainder() {
+	fmt.Println("quotientRemainder")
+	result := float64(0%3)
+	fmt.Println(result)
+}
+
 // goの動作でちょっと気になったことの確認用
 func main() {
 
 	typeCeck()
 	stringCack()
 	fmt.Println(love())
+
+	quotientRemainder()
 }

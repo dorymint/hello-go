@@ -9,6 +9,8 @@ import (
 	"math"
 	"math/rand"
 	"time"
+
+	"github.com/dory/hello-go/stringutil"
 )
 
 // 変数の型は前方ではなく後ろで明示できる
@@ -136,6 +138,10 @@ func main() {
 
 	short_var()
 	fmt.Println()
+
+	// stringutil test
+	fmt.Println(stringutil.Reverse("hello world!"))
+	fmt.Println(stringutil.Reverse("!dlrow olleh"))
 
 	return
 }

@@ -2,7 +2,7 @@
 
 A Tour of Go complete
 
-コード書いてて試したスニペットをたまに足す
+試したスニペットをたまに足す
 
 
 ```txt:./tree.txt
@@ -14,7 +14,7 @@ A Tour of Go complete
 │   ├── addtree.go
 │   └── tree.txt
 ├── array_slice
-│   └── array_slice.go
+│   └── array_slice_pic.go
 ├── basic_types
 │   ├── basic-types_array.go
 │   └── type-conversions.go
@@ -31,6 +31,8 @@ A Tour of Go complete
 ├── error
 │   ├── errors-ext.go
 │   └── errors.go
+├── etc
+│   └── testingfile.go
 ├── fizzbuzz
 │   ├── cmd
 │   │   └── fizzbuzz
@@ -69,7 +71,7 @@ A Tour of Go complete
 │   └── reader2.go
 ├── reader3
 │   ├── README.md
-│   ├── reader3.go
+│   ├── reader3_addtree.go
 │   └── tree.txt
 ├── rot_reader
 │   └── rot_reader.go
@@ -79,12 +81,12 @@ A Tour of Go complete
 ├── stringutil
 │   ├── reverse.go
 │   └── reverse_test.go
-├── testingfile.go
 ├── tree.txt
+├── unsafe
+│   └── stringbyte
+│       └── stringbytes.go
 ├── use_gdebug
 │   ├── helloecho.go
-│   ├── stringbyte
-│   │   └── stringbytes.go
 │   └── use_gdebug
 ├── use_image_package
 │   ├── images-pic.go
@@ -92,7 +94,7 @@ A Tour of Go complete
 └── web_crawler
     └── web_crawler.go
 
-32 directories, 51 files
+34 directories, 51 files
 
 ```
 

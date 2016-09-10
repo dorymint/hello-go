@@ -20,13 +20,15 @@ type Fetcher interface {
 // NOTE:mapを使ってキャッシュを保持できる
 // NOTE:しかし、それだけでは並列実行時の安全性は保証されない
 func Crawl(url string, depth int, fetcher Fetcher) {
-
 	// NOTE:まずはmapでurlのキャッシュを作ってみる
 	urlCache := make(map[string]bool)
 	mux := new(sync.Mutex)
 
-	crawl := func(string, int, Fetcher){}
+	crawl := func(string, int, Fetcher){} // クロージャで捕まえるために前方宣言
 	crawl = func(url string, depth int, fetcher Fetcher) {
+		if depth <= 0 {
+			return
+		}
 		// Mutexで危ないアクセスを制限
 		mux.Lock()
 		if urlCache[url] {
@@ -36,9 +38,6 @@ func Crawl(url string, depth int, fetcher Fetcher) {
 		urlCache[url] = true
 		mux.Unlock()
 
-		if depth <= 0 {
-			return
-		}
 		body, urls, err := fetcher.Fetch(url)
 		if err != nil {
 			fmt.Println(err)
@@ -56,13 +55,10 @@ func Crawl(url string, depth int, fetcher Fetcher) {
 }
 
 func main() {
-
 	Crawl("http://golang.org/", 4, fetcher)
-
 }
 
 /* fake fetcher {{{ */
-
 type fakeFetcher map[string]*fakeResult
 
 type fakeResult struct {

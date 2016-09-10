@@ -45,20 +45,14 @@ func main() {
 		go c.Inc("somekey")
 	}
 
-	// DONE:進捗のスナップショットを表示
-	// DONE:\rを使ってcountが進むように表示を上書きしていく
-	// NOTE:処理に時間がかからないので変化がわかりにくい
-	fmt.Printf("\x1b[33m")
+	fmt.Print("\x1b[33m")
 	for x := c.Value("somekey"); x < targetNumber; x = c.Value("somekey") {
-		fmt.Fprintf(os.Stderr, "%v,\r", x)
-		// NOTE:
-		// エラーに出力しないとファイルにリダイレクトしたとき表示が埋まる
-		// エラーに吐いてるので当然エラーをファイルにリダイレクトするとログが埋まる
-		// TODO:何か良いやり方は無いか考える
+		time.Sleep(time.Microsecond)
+		fmt.Fprintf(os.Stderr, "%5v\r", x)
 	}
-	fmt.Printf("\x1b[0m\n")
+	fmt.Print("\x1b[0m\n")
 
-	fmt.Printf("\x1b[31m%v\n\x1b[0m", c.Value("somekey")) // 1000
-	fmt.Printf("\x1b[32mend of work,\x1b[0m %v\n", c.Value("somekey"))
+	fmt.Printf("%s%v%s\n", "\x1b[31m", c.Value("somekey"), "\x1b[0m" ) // 1000
+	fmt.Printf("%send of work,%s %v\n", "\x1b[32m", "\x1b[0m",  c.Value("somekey"))
 }
 

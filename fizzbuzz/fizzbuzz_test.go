@@ -50,7 +50,6 @@ func TestSfizzBuzz(t *testing.T) {
 	if err == nil {
 		t.Fatalf("SfizzBuzz(-10):expected err!=nil...out %q", err)
 	}
-	t.Logf("SfizzBuzz:PATH error return check")
 
 	testData := []struct {
 		input    int
@@ -103,10 +102,3 @@ func ExampleShowFizzBuzz() {
 	// fizzbuzz
 }
 
-func TestSimple(t *testing.T) {
-	value := 1
-	expected := 2
-	if value != expected {
-		//t.Fatalf("Expected %v, but %v:", expected, value)
-	}
-}

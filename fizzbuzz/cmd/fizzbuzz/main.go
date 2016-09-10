@@ -1,15 +1,14 @@
 package main
 
 import (
-	"./fizzbuzz"
-
+	fb	"github.com/dory/hello-go/fizzbuzz"
 	"fmt"
 	"os"
 )
 
 
 func main() {
-	if err := fizzbuzz.FizzBuzz(150); err != nil {
+	if err := fb.FizzBuzz(150); err != nil {
 		fmt.Fprintln(os.Stderr, err)
 	}
 }

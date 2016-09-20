@@ -1,0 +1,7 @@
+BenchmarkDirsCrawl-4       	   20000	   5251385 ns/op
+BenchmarkHayabusaCrawl-4   	   20000	   4571379 ns/op
+BenchmarkSimpleCrawl-4     	   10000	   7931787 ns/op
+BenchmarkGetDirsCrawl-4    	   20000	   6899256 ns/op
+BenchmarkUseWaitGroup-4    	   10000	  11348520 ns/op
+PASS
+ok  	github.com/dory/hello-go/channels/levelup	673.651s

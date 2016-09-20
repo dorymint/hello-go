@@ -8,6 +8,7 @@ import (
 	"fmt"
 	"math"
 	"math/rand"
+	"runtime"
 	"time"
 
 	"github.com/dory/hello-go/stringutil"
@@ -126,6 +127,52 @@ func short_var() {
 	return
 }
 
+func reverse() {
+	// stringutil test
+	fmt.Println(stringutil.Reverse("hello world!"))
+	fmt.Println(stringutil.Reverse("!dlrow olleh"))
+}
+
+func operator() {
+	fmt.Println("test1")
+	fmt.Println("uint")
+	test := uint(1)
+	fmt.Println(test)
+
+	test -= uint(2)
+	fmt.Println(test)
+
+	test += uint(1)
+	fmt.Println(test)
+
+	fmt.Println("test2")
+	fmt.Println("int")
+	test2 := int(1)
+	fmt.Println(test2)
+
+	test2 -= int(2)
+	fmt.Println(test2)
+
+	test2 += int(1)
+	fmt.Println(test2)
+	
+	test2 -= int(-1)
+	fmt.Println(test2)
+
+	fmt.Println("test3")
+	test3 := int(0)
+	fmt.Printf("%b\n", test3)
+	test3 = -test3
+	fmt.Printf("%b\n", test3)
+	test3++
+	fmt.Printf("%b\n", test3)
+	fmt.Printf("%b\n", -test3)
+}
+
+func cpu() {
+	fmt.Println("cpu ", runtime.NumCPU())
+}
+
 func main() {
 	hello_go()
 	fmt.Println()
@@ -139,11 +186,13 @@ func main() {
 	short_var()
 	fmt.Println()
 
-	// stringutil test
-	fmt.Println(stringutil.Reverse("hello world!"))
-	fmt.Println(stringutil.Reverse("!dlrow olleh"))
+	reverse()
+	fmt.Println()
 
-	return
+	operator()
+	fmt.Println()
+
+	cpu()
 }
 
 // vim

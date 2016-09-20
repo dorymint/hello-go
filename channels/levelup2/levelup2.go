@@ -30,17 +30,21 @@ func fatalIF(str string, err error) {
 	}
 }
 
+
 // Use wait group!!
 func useWaitGroupCrawl(root string) ([]string, map[string][]os.FileInfo) {
-	var Result []string
+
+	var Dirlist []string
 	DirsCache := make(map[string]bool)
-	Infomap := make(map[string][]os.FileInfo)
-	Wg := new(sync.WaitGroup)
+	InfoCache := make(map[string][]os.FileInfo)
 	Mux := new(sync.Mutex)
+
+	Wg := new(sync.WaitGroup)
 
 	var dirsCrawl func(string)
 	dirsCrawl = func(dirname string) {
 		defer Wg.Done()
+
 		Mux.Lock()
 		if DirsCache[dirname] {
 			return
@@ -61,23 +65,25 @@ func useWaitGroupCrawl(root string) ([]string, map[string][]os.FileInfo) {
 			return
 		}
 		Mux.Lock()
-		Infomap[dirname] = info
+		InfoCache[dirname] = info
 		Mux.Unlock()
+
 		for _, x := range info {
 			if x.IsDir() {
 				tmp := filepath.Join(dirname, x.Name())
 				Mux.Lock()
-				Result = append(Result, tmp)
+				Dirlist = append(Dirlist, tmp)
 				Mux.Unlock()
 				Wg.Add(1)
 				go dirsCrawl(tmp)
 			}
 		}
 	}
+
 	Wg.Add(1)
 	dirsCrawl(root)
 	Wg.Wait()
-	return Result, Infomap
+	return Dirlist, InfoCache
 }
 func crawltset() {
 	dirslist, infomap := useWaitGroupCrawl(*root)
@@ -90,14 +96,24 @@ func crawltset() {
 	var fileCount int
 	for _, x := range dirslist {
 		for _, y := range infomap[x] {
-			if strings.HasSuffix(y.Name(), ".go")  || strings.HasSuffix(y.Name(), ".txt"){
+			// TODO:
+			if suffixSeacher(y.Name(), []string{".go", ".txt"}) {
 				fmt.Println(filepath.Join(x, y.Name()))
 				fileCount++
 				time.Sleep(time.Millisecond)
 			}
 		}
 	}
-	fmt.Printf("all dirs = %v\nfile count = %v\n", len(dirslist),  fileCount)
+	fmt.Printf("all dirs = %v\nfile count = %v\n", len(dirslist), fileCount)
+}
+
+func suffixSeacher(filename string, targetSuffix []string) bool {
+	for _, x := range targetSuffix {
+		if strings.HasSuffix(filename, x) {
+			return true
+		}
+	}
+	return false
 }
 
 func main() {

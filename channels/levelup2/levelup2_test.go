@@ -10,6 +10,7 @@ import (
 	"testing"
 )
 
+// testing directory structure
 var (
 	tmpRoot = ""
 	tmpDirs = []string{
@@ -28,11 +29,13 @@ var (
 			"AA.1.txt",
 			"AA.2.txt",
 		},
-		tmpDirs[2]: {},
-		tmpDirs[3]: {
+		tmpDirs[2]: {
 			"AAA.1.txt",
 			"AAA.2.txt",
 			"AAA.3.txt",
+		},
+		tmpDirs[3]: {
+			"B.go",
 		},
 	}
 )
@@ -44,7 +47,6 @@ func TestMain(m *testing.M) {
 	if err != nil {
 		log.Fatalf("TestMain:%v\n", err)
 	}
-
 
 	// make temp
 	tmpRoot = makeTempDir(tmpDirs, tmpFilesMap)
@@ -62,26 +64,32 @@ func TestMain(m *testing.M) {
 func makeTempDir(dirs []string, filemap map[string][]string) (root string) {
 
 	tmproot, err := ioutil.TempDir("", "crawl")
-	fatalIF("tempdir", err)
+	if err != nil {
+		log.Fatal(err)
+	}
 
 	// create tempdir
 	for _, x := range dirs {
 		dirpath := filepath.Join(tmproot, x)
-		err := os.MkdirAll(dirpath, 0700)
-		fatalIF("mkdir", err)
+		if err := os.MkdirAll(dirpath, 0700); err != nil {
+			log.Fatal(err)
+		}
 
 		// create tempfile
 		for _, y := range filemap[x] {
 			filepath := filepath.Join(dirpath, y)
-			err := ioutil.WriteFile(filepath, nil, 0700)
-			fatalIF("ioutil.WriteFile", err)
+			if err := ioutil.WriteFile(filepath, nil, 0700); err != nil {
+				log.Fatal(err)
+			}
 		}
 	}
 	return tmproot
 }
 
 func deepEqualStrings(t *testing.T, expected, out []string) {
-	if reflect.DeepEqual(expected, out) { return }
+	if reflect.DeepEqual(expected, out) {
+		return
+	}
 	t.Error("Not Equal!")
 	t.Error("expected")
 	for _, x := range expected {
@@ -94,14 +102,15 @@ func deepEqualStrings(t *testing.T, expected, out []string) {
 	t.FailNow()
 }
 
-func TestUseWaitGroup(t *testing.T) {
+// TODO:読みづらい、何とかしたい
+func TestDrisCrawl(t *testing.T) {
 	var expectedDirs []string
 	for _, x := range tmpDirs {
 		expectedDirs = append(expectedDirs, filepath.Join(tmpRoot, x))
 	}
 
 	// Run
-	outDirs, outInfosMap := useWaitGroupCrawl(tmpRoot)
+	outDirs, outInfosMap := dirsCrawl(tmpRoot)
 
 	// dirs check
 	sort.Strings(outDirs)
@@ -119,13 +128,15 @@ func TestUseWaitGroup(t *testing.T) {
 			t.Fatal(err)
 		}
 		expectedFileInfosMap[dirname] = info
-		if err := f.Close(); err != nil { t.Fatal(err) }
+		if err := f.Close(); err != nil {
+			t.Fatal(err)
+		}
 	}
 
 	// CreateTestData expected info names
 	var expectedNames []string
 	for _, infos := range expectedFileInfosMap {
-		for _, info := range infos{
+		for _, info := range infos {
 			expectedNames = append(expectedNames, info.Name())
 		}
 	}
@@ -144,6 +155,80 @@ func TestUseWaitGroup(t *testing.T) {
 
 func BenchmarkUseWaitGroup(b *testing.B) {
 	for i := 0; i < b.N; i++ {
-		useWaitGroupCrawl(*root)
+		dirsCrawl(*root)
 	}
 }
+
+func TestSuffixSearcher(t *testing.T) {
+	targetSuffix := []string{
+		"go",
+		"txt",
+	}
+	filename := []string{
+		"test1.go",
+		"test2.txt",
+	}
+	fatalname := []string{
+		"fata1go",
+		"fatal2txt",
+	}
+
+	for _, x := range filename {
+		if !suffixSeacher(x, targetSuffix) {
+			t.Fatalf("expected true, but false %v\n", x)
+		}
+	}
+	for _, x := range fatalname {
+		if suffixSeacher(x, targetSuffix) {
+			t.Fatalf("expected false, but true %v\n", x)
+		}
+	}
+}
+
+func writeContent(t *testing.T, content string) string {
+	f, err := ioutil.TempFile("", "level2Test")
+	if err != nil {
+		t.Fatal(err)
+	}
+	defer f.Close()
+
+	_, err = f.WriteString(content)
+	if err != nil {
+		t.Fatal(err)
+	}
+	return f.Name()
+}
+
+// TODO:Create test data tuple list
+func TestGather(t *testing.T) {
+	filename := writeContent(t, `// TODO:Test`)
+	defer func() {
+		if err := os.Remove(filename); err != nil {
+			t.Fatal(err)
+		}
+	}()
+
+	expected := []string{
+		"L1:" + "TODO:Test",
+	}
+
+	// TEST!
+	out, err := gather(filename, "TODO")
+	if err != nil {
+		t.Fatal(err)
+	}
+	if !reflect.DeepEqual(expected, out) {
+		t.Error("not equal!")
+		t.Error("expected")
+		for _, x := range expected {
+			t.Error(x)
+		}
+		t.Error("but out")
+		for _, x := range out {
+			t.Error(x)
+		}
+		t.FailNow()
+	}
+}
+
+

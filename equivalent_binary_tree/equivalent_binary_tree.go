@@ -14,7 +14,7 @@ import (
 
 // DONE:Walk test
 // go Walk(tree.New(1), ch)
-// TODO:Samu test
+// NEXT:Samu test
 // Samu(tree.New(1), tree.New(1)) true
 // Samu(tree.New(1), tree.New(2)) false
 
@@ -37,13 +37,13 @@ func Walk(t *tree.Tree, ch chan int) {
 	}
 
 	// work
-	// TODO:callstackが溜まりまくりそう、もっといい方法を考えたい
+	//callstackが溜まりまくりそう、もっといい方法を考えたい
 	walk(t, ch)
 	close(ch)
 }
 
 // Same determines whether the tree
-// TODO:implement
+// NEXT:implement
 func Same(t1, t2 *tree.Tree) bool {
 
 	ch1, ch2 := make(chan int), make(chan int)

@@ -102,7 +102,7 @@ func deepEqualStrings(t *testing.T, expected, out []string) {
 	t.FailNow()
 }
 
-// TODO:読みづらい、何とかしたい
+// 読みづらい、何とかしたい
 func TestDrisCrawl(t *testing.T) {
 	var expectedDirs []string
 	for _, x := range tmpDirs {
@@ -199,7 +199,7 @@ func writeContent(t *testing.T, content string) string {
 	return f.Name()
 }
 
-// TODO:Create test data tuple list
+// NEXT:Create test data tuple list
 func TestGather(t *testing.T) {
 	filename := writeContent(t, `// TODO:Test`)
 	defer func() {

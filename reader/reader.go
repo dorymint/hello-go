@@ -16,7 +16,7 @@ import (
 // ctrl-kすれば見れるけど下のメソッドが実装されてる
 // func (r *Reader) Read(b []byte) (n int, err error)
 
-// TODO:'A'を無限に出力するReaderの実装
+// 'A'を無限に出力するReaderの実装
 type InfinityAReader struct {}
 // error型はnil返せばいいのでこのError()はなくても一応大丈夫
 func (p *InfinityAReader) Error() string {

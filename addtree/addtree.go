@@ -14,7 +14,7 @@ README.md内に
 追加位置にある文字列は上書きされる
 */
 
-/* TODO LIST */
+/* LIST */
 // DONE:カレントディレクトリからREADME.mdを掴んでbufferを作る
 // test:bufferの内容をそのまま出力して確認
 

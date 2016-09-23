@@ -37,12 +37,12 @@ type Tree struct {
 
 	// NOTE:データを足す時はNewTreeを変更するだけで良くする
 }
-// TODO:structにするかもう少し考えたい
+// structにするかもう少し考えたい
 var (
 	treeSize int
 	treeNest int
 )
-// TODO:これも他に方法を考えたい
+// これも他に方法を考えたい
 func showInit() {
 	treeSize = 0
 	treeNest = -1
@@ -120,21 +120,21 @@ func Insert(t *Tree, n int) *Tree {
 // Show preoder Left start
 // treeNest, treeSize はグローバルな変数
 // 依存してるのでroot.Show()を呼ぶ前にshowInit()を呼ぶ
-// TODO:検索と表示が混ざってる、数値だけ返すようにして表示は分けるべき
+// 検索と表示が混ざってる、数値だけ返すようにして表示は分けるべき
 func (t *Tree) Show() {
-	// TODO:callstack
+	// callstack、少し考える
 	defer func(){treeNest--}()
 	treeNest++
 	treeSize++
 
-	// TODO:research 末尾再帰最適化
+	// research 末尾再帰最適化
 	fmt.Printf("%d  nest%d size%d\n", t.Value, treeNest, treeSize)
 	if t.Left == nil && t.Right == nil {
 		fmt.Println("is endleaf")
 		return
 	}
 
-	// TODO:callstackが...
+	// callstackが...
 	if t.Left != nil {
 		fmt.Printf("L ")
 		t.Left.Show()
@@ -145,7 +145,6 @@ func (t *Tree) Show() {
 	}
 }
 
-// TODO:test
 // test data
 var (
 	fib = [...]int{0, 1, 1, 2, 3, 5, 8, 13}

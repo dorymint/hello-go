@@ -22,7 +22,7 @@ func whileEcho(s string, n int) {
 	}
 }
 
-// TODO:引数の chan<- int と chan int の違いわかってない
+// 引数の chan<- int と chan int の違いわかってない
 // NOTE:chan<- で送信 <-chan で受信を明示してるっぽい? 単にchanだとどちらも使える?
 func counting(c chan<- int) {
 	fmt.Printf("%p,%p,\n", c, &c)

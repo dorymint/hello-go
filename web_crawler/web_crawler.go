@@ -14,7 +14,7 @@ type Fetcher interface {
 }
 
 
-// Crawl TODO
+// Crawl TODO:LIST
 // DONE:同じurlを二度取ってこない様に変える
 // DONE:並列実行した時にも同じurlを二度取ってこない実装に変える
 // NOTE:mapを使ってキャッシュを保持できる

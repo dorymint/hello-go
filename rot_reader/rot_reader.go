@@ -13,20 +13,15 @@ type rot13Reader struct {
 
 // DONE:make rot13Reader.Read()
 func (rot *rot13Reader) Read(p []byte) (int, error) {
-	n := int(0)
-	slice := make([]byte, 128, 256)
-
 	// 注意:前に r 忘れて無限再帰してスタックオーバーフローした
+	slice := make([]byte, 128, 256)
 	n, err := rot.r.Read(slice)
 	if err != nil && err != io.EOF {
-		// stderrに吐く関数調べてない
-		// fmt.Println(err)
 		fmt.Fprintf(os.Stderr, "不明なエラーが発生しました")
 		os.Exit(1)
 	}
 
-
-	// DONE:復号化してpに詰める
+	// 復号化してpに詰める
 	rotmap := newRotmap()
 	m := int(0)
 	for i := range(p) {
@@ -44,7 +39,7 @@ func (rot *rot13Reader) Read(p []byte) (int, error) {
 func newRotmap() map[byte]byte {
 	newMap := make(map[byte]byte)
 	// ASC2
-	// TODO:やばい気持ち悪い、何とかしたい
+	// 単純なメモ化だけど書き方が...もう少し何とかしたい
 	for i,I, j,J := byte('a'),byte('A'), byte('n'),byte('N'); i <= byte('m'); i,I, j,J = i+1,I+1, j+1,J+1 {
 		// 少文字
 		newMap[i] = j
@@ -61,9 +56,7 @@ func newRotmap() map[byte]byte {
 }
 
 func main() {
-
 	fmt.Println("test")
-
 	// io.Readerをsで受ける
 	s := strings.NewReader("Lbh penpxrq gur pbqr!")
 	// io.Reader s を rot13Reader.r に含んだ rot13Reader r を作る

@@ -81,7 +81,7 @@ func pow(x, n, lim float64) float64 {
 // ニュートン法を使った収束
 // よく理解できてないやばい
 func newton(x float64) float64 {
-	// TODO
+	// これでいいかちゃんと理解できてない
 	if x < 0 { return x }
 	z := x + 1
 	tmp := x // ループ離脱の比較用

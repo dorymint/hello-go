@@ -99,7 +99,7 @@ func colorTest() {
 	fmt.Printf("\n\nbgColor Test2\n")
 	sendColor(fgWhite)
 	for i := 0; i < len(bgList); i++ {
-		// TODO:表示の挙動が怪しい
+		// 表示の挙動が怪しい
 		// ターミナルの画面をリセットしてgo run
 		// hello worldの部分だけ背景色が付く
 		// そのままもう一度go run

@@ -1,4 +1,3 @@
-// TODO:
 // TEST for TODOGather!!
 package main
 
@@ -35,7 +34,6 @@ func tempFile(content string) (string, error) {
 //	}
 //}
 
-// TODO:
 func TestFileTODOGather(t *testing.T) {
 	tmp, err := tempFile(` test TODO: hello`)
 	fatalIF("tempFIle:", err)

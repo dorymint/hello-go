@@ -2,7 +2,7 @@
 
 A Tour of Go complete
 
-試したスニペットをたまに足す
+golang snips
 
 
 ```txt:./tree.txt

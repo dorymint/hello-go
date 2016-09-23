@@ -46,7 +46,7 @@ func main() {
 
 	m := Image{255, 255}
 
-	// TODO:call pic.ShowImage
+	// call pic.ShowImage
 	pic.ShowImage(m)
 
 }

@@ -65,7 +65,7 @@ func fatalIF(str string, err error) {
 }
 
 // dirsCrawl find like directory crawler!
-/// TODO:Benchmark
+/// NEXT:Benchmark
 func dirsCrawl(dirname string, ch chan string, errlist *[]string) {
 	// gophers is goroutine counter!
 	locker := new(crawlLocker)
@@ -127,7 +127,7 @@ func processDirsCrawl() ([]string, []string) {
 
 
 // do not use structure test
-/// TODO:Benchmark
+/// NEXT:Benchmark
 func hayabusaCrawl(root string, ch chan string, Errlist *[]string) {
 	// gophers are goroutine counter!
 	Gophers := int(1)

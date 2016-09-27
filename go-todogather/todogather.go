@@ -51,7 +51,7 @@ func init() {
 	*root, err = os.Getwd()
 	fatalIF("init", err)
 
-	// TEST:TODO:delete
+	// TEST:TODO: delete
 	*root = "../hello-go"
 
 	flag.Parse()
@@ -75,7 +75,7 @@ func flagView() error {
 		}
 		fmt.Println("-----| Usage |-----")
 		usage()
-		/* TODO:error hundling */
+		/* TODO: error hundling */
 		os.Exit(1)
 		return errors.New("Unknown Flags")
 		/* error hundling */
@@ -130,7 +130,7 @@ func fileInGather(filename string) (str []string, err error) {
 		}
 	}()
 
-	// TODO:identify executable
+	// TODO: identify executable
 	// That is another function job?
 	for sc, i := bufio.NewScanner(f), uint(1); sc.Scan(); i++ {
 		if err := sc.Err(); err != nil {
@@ -145,7 +145,7 @@ func fileInGather(filename string) (str []string, err error) {
 	return
 }
 
-// TODO:取り敢えず...ディレクトリネームだけを集めてみる
+// TODO: 取り敢えず...ディレクトリネームだけを集めてみる
 // 作りがかなり怪しい...もっとシンプルにしたい...
 func dirsGather(searchRoot string) []string {
 	result := make([]string, 0, 1000)
@@ -182,7 +182,7 @@ func dirsGather(searchRoot string) []string {
 			}
 		}()
 
-		// TODO:identify executable, select and push text file
+		// TODO: identify executable, select and push text file
 		// get dirnames
 		dirnames, err := dir.Readdir(0)
 		if err != nil && err != io.EOF {

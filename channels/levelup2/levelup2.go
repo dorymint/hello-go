@@ -12,7 +12,7 @@ import (
 	"time"
 )
 
-// TODO:LIST
+// TODO: LIST
 // parse flags
 // search dirs
 // search in files
@@ -111,7 +111,7 @@ func dirsCrawl(root string) ([]string, map[string][]os.FileInfo) {
 	return Dirlist, InfoCache
 }
 
-// TODO:Do erase after test
+// TODO: Do erase after test
 func crawlshow() {
 	dirslist, infomap := dirsCrawl(*root)
 	fmt.Println("show directory list")
@@ -146,7 +146,7 @@ func suffixSeacher(filename string, targetSuffix []string) bool {
 }
 
 // specify filename and target, Gather target(TODOs), return todoList.
-// TODO:use goroutine
+// TODO: use goroutine
 func gather(filename string, target string) ([]string, error) {
 	var todoList []string
 	f, err := os.Open(filename)
@@ -173,8 +173,8 @@ func gather(filename string, target string) ([]string, error) {
 
 
 // TODOGather!! main proc
-// TODO:use goroutine
-// TODO:驚くべき読みにくさ...何とかしたい
+// TODO: use goroutine
+// TODO: 驚くべき読みにくさ...何とかしたい
 func mainproc() (todoMap map[string][]string, gatherErr error) {
 	todoMap = make(map[string][]string)
 	_, infomap := dirsCrawl(*root)

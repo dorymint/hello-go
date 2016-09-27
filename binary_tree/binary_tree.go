@@ -58,7 +58,7 @@ func NewTree(t *Tree, n int, s string) *Tree {
 		return &Tree{nil, n, t.Right}
 	}
 	if s == "new" {
-		// TODO:t.preNode追加した時用の分岐がある
+		// NOTE:t.preNode追加した時用の分岐がある
 		if t == nil {
 			return &Tree{nil, n, nil} // t.preNode &Tree{nil, n, nil, nil}
 		}

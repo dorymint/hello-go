@@ -146,7 +146,7 @@ func suffixSeacher(filename string, targetSuffix []string) bool {
 }
 
 // specify filename and target, Gather target(TODOs), return todoList.
-// TODO: use goroutine
+// TODO: Use goroutine
 func gather(filename string, target string) ([]string, error) {
 	var todoList []string
 	f, err := os.Open(filename)
@@ -173,7 +173,7 @@ func gather(filename string, target string) ([]string, error) {
 
 
 // TODOGather!! main proc
-// TODO: use goroutine
+// TODO: Use goroutine
 // TODO: 驚くべき読みにくさ...何とかしたい
 func mainproc() (todoMap map[string][]string, gatherErr error) {
 	todoMap = make(map[string][]string)

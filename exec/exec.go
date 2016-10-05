@@ -7,6 +7,7 @@ import (
 	"os/exec"
 )
 
+
 func main() {
 	log.Println("main")
 	cmd := exec.Command("echo", "hello")
@@ -24,17 +25,21 @@ func main() {
 	fmt.Println(cmd.SysProcAttr)
 
 	cmd.Stdout = os.Stdout
-	
 	if err := cmd.Run(); err != nil {
 		log.Fatal(err)
 	}
 
-	todogotcha := exec.Command("todogotcha", "-root", "/home/dory/gowork/src/")
+	fmt.Println("\ntodogotcha")
+
+	todogotcha := exec.Command("todogotcha", "-root", "./", "-result", "off")
+	// TODO: This TODO is test.
 	todogotcha.Stdout = os.Stdout
 	todogotcha.Stderr = os.Stderr
-	fmt.Println(todogotcha.Args)
+	fmt.Println("todogotcha args=",todogotcha.Args)
+	fmt.Println("todogotcha path=",todogotcha.Path)
 
 	if err := todogotcha.Run(); err != nil {
 		log.Fatal(err)
 	}
 }
+

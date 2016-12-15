@@ -6,34 +6,18 @@ golang snips
 
 
 ```txt:./tree.txt
-.
-├── array_slice
-├── basic_types
-├── channels
-│   ├── levelup
-│   ├── levelup2
-│   └── levelup3
-├── color
-├── defer
-├── error
+./
 ├── etc
+├── exec
+│   └── lookpath
 ├── flag
 │   └── testdir
-├── function
-├── goroutins
-├── hello
-├── interface
-├── loop_switch_newton
-├── maps
-│   └── levelup
-├── method
-│   └── indirection
+├── image
 ├── mkpkg
 │   └── stringutil
-├── mutex
 ├── os
 ├── path
-├── pointer
+├── pipe
 ├── proto
 │   ├── addtree
 │   ├── binary_tree
@@ -45,16 +29,42 @@ golang snips
 │   │   └── testdir
 │   ├── rot_reader
 │   ├── shida
+│   ├── skeleton
+│   ├── web
+│   │   ├── basic
+│   │   ├── client
+│   │   └── server
 │   └── web_crawler
-├── reader
-│   ├── reader2
-│   └── reader3
-├── strings
+├── tourA
+│   ├── array_slice
+│   ├── basic_types
+│   ├── channels
+│   │   ├── levelup
+│   │   ├── levelup2
+│   │   ├── levelup3
+│   │   └── levelup4
+│   ├── color
+│   ├── defer
+│   ├── error
+│   ├── function
+│   ├── goroutins
+│   ├── hello
+│   ├── interface
+│   ├── loop_switch_newton
+│   ├── maps
+│   │   └── levelup
+│   ├── method
+│   │   └── indirection
+│   ├── mutex
+│   ├── pointer
+│   ├── reader
+│   │   ├── reader2
+│   │   └── reader3
+│   └── strings
 ├── unsafe
 │   └── stringbyte
-├── use_gdebug
-└── use_image_package
+└── use_gdebug
 
-47 directories
+57 directories
 ```
 

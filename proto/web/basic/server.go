@@ -5,7 +5,6 @@ package main
 
 import (
 	"fmt"
-	"io"
 	"log"
 	"net"
 	"time"
@@ -36,7 +35,7 @@ func handleConnection(conn net.Conn) {
 		log.Println(conn.RemoteAddr(), "is closed\n")
 	}()
 	log.Println("hello new connection!")
-	io.Copy(conn, conn)
+	//io.Copy(conn, conn)
 
 	// simple write
 	conn.Write([]byte("from server: send to connection!!"))

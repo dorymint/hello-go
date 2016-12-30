@@ -38,6 +38,7 @@ func proc() {
 		if sc.Err() != nil {
 			log.Fatalf("proc:%v", sc.Err())
 		}
+		if sc.Text() == "exit" { return }
 		ch <- sc.Text()
 	}
 }

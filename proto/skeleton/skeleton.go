@@ -38,7 +38,14 @@ func proc() {
 		if sc.Err() != nil {
 			log.Fatalf("proc:%v", sc.Err())
 		}
-		ch <- sc.Text()
+		switch in := sc.Text(); in {
+		case "exit":
+			return
+		case "happy":
+			ch <- sc.Text() + " new year!"
+		default:
+			ch <- sc.Text()
+		}
 	}
 }
 

@@ -1,7 +1,7 @@
 package main
 
 import (
-	fb	"github.com/dory/hello-go/fizzbuzz"
+	fb	"../../"
 	"fmt"
 	"os"
 )

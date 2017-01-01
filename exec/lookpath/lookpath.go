@@ -7,15 +7,17 @@ import (
 )
 
 func main() {
-	hello, err := exec.LookPath("todogotcha")
+	lookEXE, err := exec.LookPath("todogotcha")
 	if err != nil {
 		log.Fatal(err)
 	}
-	fmt.Println(hello)
-	fmt.Printf("%T\n", hello)
+	fmt.Println(lookEXE)
+	fmt.Printf("%T\n", lookEXE)
 
-	hello, err = exec.LookPath("todogotcha!!!")
+	// intentional error. invalid file path
+	lookEXE, err = exec.LookPath("todogotcha!!!")
 	if err != nil {
-		log.Fatalf("name:%verr:%v", hello, err)
+		fmt.Println("intentional error")
+		log.Printf("name:%verr:%v", lookEXE, err)
 	}
 }

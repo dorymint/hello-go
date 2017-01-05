@@ -52,6 +52,8 @@ func quotientRemainder() {
 	fmt.Println(result)
 }
 
+// 
+
 // goの動作でちょっと気になったことの確認用
 func main() {
 

@@ -63,12 +63,13 @@ func execStream(src io.Reader, dst io.Writer, errDst io.Writer) error {
 		log.Fatal(err)
 	}
 	var wg sync.WaitGroup
-	wg.Add(3)
 
 	err = cmd.Start()
 	if err != nil {
 		log.Fatal(err)
 	}
+
+	wg.Add(3)
 	// stdin
 	go func() {
 		stdin.Write([]byte("hello "))
@@ -85,8 +86,9 @@ func execStream(src io.Reader, dst io.Writer, errDst io.Writer) error {
 	}()
 	// stdout
 	go func() {
+		fmt.Println("temporary stoped for stdout")
 		_, err = io.Copy(dst, stdout)
-		fmt.Println("copy to os.stdout")
+		fmt.Println("copied to os.stdout")
 		if err != nil {
 			log.Fatal(err)
 		}
@@ -96,8 +98,9 @@ func execStream(src io.Reader, dst io.Writer, errDst io.Writer) error {
 	}()
 	// stderr
 	go func() {
+		fmt.Println("temporary stoped for stderr")
 		_, err = io.Copy(errDst, stderr)
-		fmt.Println("copy to os.stderr")
+		fmt.Println("copied to os.stderr")
 		if err != nil {
 			log.Fatal(err)
 		}

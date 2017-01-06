@@ -5,6 +5,7 @@ import (
 	"fmt"
 	"io"
 	"log"
+	"os"
 	"os/exec"
 	"sync"
 	"time"
@@ -18,6 +19,7 @@ func main() {
 	//execStream(os.Stdin, os.Stdout, os.Stderr)
 	//execStdin()
 	execSkeleton()
+	execStdin2()
 }
 
 func execName() {
@@ -176,4 +178,27 @@ func execSkeleton() {
 
 	io.WriteString(stdin, "exit\n")
 	cmd.Wait()
+}
+
+// From stackoverflow
+// http://stackoverflow.com/questions/23166468/how-can-i-get-stdin-to-exec-cmd-in-golang
+func execStdin2() {
+	subProcess := exec.Command("go", "run", "./helper/main.go")
+
+	stdin, err := subProcess.StdinPipe()
+	if err != nil {
+		log.Fatal(err)
+	}
+	defer stdin.Close()
+	subProcess.Stdout = os.Stdout
+	subProcess.Stderr = os.Stderr
+
+	fmt.Println("START")
+	if err := subProcess.Start(); err != nil {
+		log.Fatal(err)
+	}
+
+	io.WriteString(stdin, "4\n")
+	subProcess.Wait()
+	fmt.Println("END")
 }

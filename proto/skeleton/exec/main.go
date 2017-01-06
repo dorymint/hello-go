@@ -172,6 +172,8 @@ func execSkeleton() {
 	fmt.Println(n, err)
 	io.WriteString(stdin, "next")
 	io.WriteString(stdin, "\n")
-	time.Sleep(time.Second * 4)
+	time.Sleep(time.Second)
 
+	io.WriteString(stdin, "exit\n")
+	cmd.Wait()
 }

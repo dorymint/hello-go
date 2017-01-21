@@ -8,13 +8,11 @@ import (
 	"os"
 	"strconv"
 )
-
 func main() {
 	if err := proc(); err != nil {
 		log.Fatal(err)
 	}
 }
-
 func proc() error {
 	for sc := bufio.NewScanner(os.Stdin); sc.Scan(); {
 		if sc.Err() != nil {

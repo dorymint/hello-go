@@ -1,4 +1,4 @@
-
+// for linux
 package main
 
 // terminal color
@@ -122,7 +122,6 @@ func colorTest() {
 }
 
 func main() {
-
+	fmt.Println("for linux")
 	colorTest()
-
 }

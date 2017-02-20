@@ -151,7 +151,7 @@ func dirsGather(searchRoot string) []string {
 	result := make([]string, 0, 1000)
 	ch := make(chan string, 10)
 	dirsmap := make(map[string]bool)
-	gophers  := uint(1)
+	gophers := uint(1)
 	mux := new(sync.Mutex)
 	//var errorlog []string
 
@@ -207,13 +207,13 @@ func dirsGather(searchRoot string) []string {
 				// recur
 				go dirsCrawl(tmp)
 				fmt.Println(tmp)
-				ch<-tmp
+				ch <- tmp
 			}
 		}
 	}
 	go dirsCrawl(searchRoot)
 	// wait gophers!
-	for ; gophers != 0; {
+	for gophers != 0 {
 		time.Sleep(time.Nanosecond)
 		result = append(result, <-ch)
 	}
@@ -259,8 +259,8 @@ func main() {
 	// test
 	log.Println("call to dirsGather")
 	dirsGather(*root)
-//	test := dirsGather(*root)
-//	for _, x := range test {
-//		fmt.Println(x)
-//	}
+	//	test := dirsGather(*root)
+	//	for _, x := range test {
+	//		fmt.Println(x)
+	//	}
 }

@@ -35,10 +35,6 @@ func defer_2() {
 
 
 func main(){
-
 	defer_1()
 	defer_2()
-
 }
-
-

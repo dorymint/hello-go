@@ -1,11 +1,10 @@
 
-// web server
 
+// web server
 package main
 
 import (
 	"fmt"
-	//"io"
 	"log"
 	"net"
 	"time"
@@ -23,8 +22,6 @@ func main() {
 		if err != nil {
 			log.Println("ln.Accept error:", err)
 		}
-		fmt.Println(conn.LocalAddr())
-		fmt.Println(conn.RemoteAddr())
 
 		go handleConnection(conn)
 	}
@@ -32,14 +29,15 @@ func main() {
 
 func handleConnection(conn net.Conn) {
 	defer func() {
+		log.Println(conn.RemoteAddr(), "close")
 		conn.Close()
-		log.Println(conn.RemoteAddr(), "is closed\n")
 	}()
 	log.Println("hello new connection!")
-	//io.Copy(conn, conn)
+	fmt.Println(conn.LocalAddr())
+	fmt.Println(conn.RemoteAddr())
 
 	// simple write
-	conn.Write([]byte("from server: send to connection!!"))
+	conn.Write([]byte("from server to client: send to connection!!"))
 
 
 	// simple read

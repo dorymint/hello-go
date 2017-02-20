@@ -12,8 +12,8 @@ import (
 	"time"
 
 	// Rquire Install pkg
-	//"github.com/dory/hello-go/stringutil"
-	"../mkpkg/stringutil"
+	//"github.com/dory/hello-go/mkpkg/stringutil"
+	"../../mkpkg/stringutil"
 )
 
 // 変数の型は前方ではなく後ろで明示できる

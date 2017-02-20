@@ -1,7 +1,7 @@
 
 
 // デバッグシンボル付きのコンパイル
-// go build -gcflags "-N -l"
+// go build -gcflags "-N -l" <dst src>
 
 // gdb <exe file name>
 // run, list <n>, break <n>, delete <n>, print <v>,

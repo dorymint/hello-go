@@ -40,14 +40,14 @@ func newRotmap() map[byte]byte {
 	newMap := make(map[byte]byte)
 	// ASC2
 	// 単純なメモ化だけど書き方が...もう少し何とかしたい
-	for i,I, j,J := byte('a'),byte('A'), byte('n'),byte('N'); i <= byte('m'); i,I, j,J = i+1,I+1, j+1,J+1 {
+	for a,A, n,N := byte('a'),byte('A'), byte('n'),byte('N'); a <= byte('m'); a,A, n,N = a+1,A+1, n+1,N+1 {
 		// 少文字
-		newMap[i] = j
-		newMap[j] = i
+		newMap[a] = n
+		newMap[n] = a
 
 		// 大文字
-		newMap[I] = J
-		newMap[J] = I
+		newMap[A] = N
+		newMap[N] = A
 	}
 	newMap[byte(' ')] = byte(' ')
 	newMap[byte('\n')] = byte('\n')

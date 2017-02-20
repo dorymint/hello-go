@@ -1,3 +1,5 @@
+// directory crawler
+// word search
 package main
 
 import (

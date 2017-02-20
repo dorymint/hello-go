@@ -108,7 +108,6 @@ func wordCount() {
 }
 
 func main() {
-
 	map_1()
 	fmt.Println()
 	map_2()
@@ -116,6 +115,4 @@ func main() {
 
 	wordCount()
 	fmt.Println()
-
-
 }

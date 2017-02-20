@@ -21,9 +21,9 @@ func main() {
 	// simple read
 	buffer := make([]byte, 1024)
 	conn.Read(buffer)
-	fmt.Println(string(buffer))
+	fmt.Printf("%s\n%s\n", "--- BUFFER ---", string(buffer))
 
 	// simple write
-	conn.Write([]byte("from client to server: hello world!!"))
+	conn.Write([]byte("FROM CLIENT: hello world!!"))
 	time.Sleep(time.Second)
 }

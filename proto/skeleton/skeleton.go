@@ -20,13 +20,13 @@ func displayDaemon() chan<- string {
 
 // {Input > modify > Output}
 func modifyDaemon(output chan<- string, prefix string) chan<- string {
-	input := make(chan string)
+	inputch := make(chan string)
 	go func() {
 		for {
-			output <- fmt.Sprintf("%v:%v", prefix, <-input)
+			output <- fmt.Sprintf("%v:%v", prefix, <-inputch)
 		}
 	}()
-	return input
+	return inputch
 }
 
 // Proc!!

@@ -14,12 +14,15 @@ import (
 func main() {
 	port := string(":8080")
 	ch := make(chan string)
+
 	go func() {
 		if err := server.Listen(port); err != nil {
 			log.Fatal("main:server:", err)
 		}
 	}()
+
 	time.Sleep(time.Second)
+
 	go func() {
 		for {
 			if err := client.Client(port, ch); err != nil {

@@ -2,10 +2,15 @@ package main
 
 import (
 	"fmt"
+	"reflect"
 )
 
+func split(str string) {
+	fmt.Println("----------", str, "----------")
+}
+
 // 空文字の取り扱い
-func stringCack() {
+func stringCheck() {
 	fmt.Println("stringCack")
 
 	s := string("Go tutorial start")
@@ -37,27 +42,49 @@ func stringCack() {
 // love
 func love() string { return string('生' & '死') }
 
-func typeCeck() {
+func typeCheck() {
 	var i byte = 'A'
 	fmt.Printf("%v, %T\n", i, i)
 	i++
 	fmt.Printf("%v, %T\n", i, i)
-
 }
 
 // 除算テスト
 func quotientRemainder() {
 	fmt.Println("quotientRemainder")
-	result := float64(0%3)
+	result := float64(0 % 3)
 	fmt.Println(result)
 }
 
+// slice
+func slice() {
+	fmt.Printf("%q\n", []string{})
+	ss := []string{"h","e","l","l","o"}
+	fmt.Printf("ss    , %q\n", ss)
+	fmt.Printf("ss[0:], %q\n", ss[0:])
+	fmt.Printf("ss[1:], %q\n", ss[1:])
+	fmt.Printf("ss[5:], %q\n", ss[5:])
+	if ss[5:] == nil {
+		fmt.Println("hi")
+	}
+	fmt.Println("TypeOf(ss[5:]) = ", reflect.TypeOf(ss[5:]))
+	fmt.Println("len(ss[5:]) ,", len(ss[5:]))
+	//fmt.Printf("%q\n", ss[6:]) // panic, invalid
+	fmt.Printf("ss    , %q\n", ss)
+	fmt.Printf("ss[:0], %q\n", ss[:0])
+	fmt.Printf("ss[:1], %q\n", ss[:1])
+	fmt.Printf("ss[:5], %q\n", ss[:5])
+}
 
 func main() {
-
-	typeCeck()
-	stringCack()
+	split("typeCheck")
+	typeCheck()
+	split("stringCheck")
+	stringCheck()
+	split("love")
 	fmt.Println(love())
-
+	split("quotientRemainder")
 	quotientRemainder()
+	split("slice")
+	slice()
 }

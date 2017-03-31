@@ -2,8 +2,12 @@ package main
 
 import (
 	"fmt"
+	"go/ast"
+	"go/format"
 	"go/parser"
 	"go/token"
+	"os"
+	"strings"
 )
 
 func split(str string) {
@@ -56,6 +60,33 @@ func helloParser() {
 	fmt.Println(f.Scope.Lookup("nyan"))
 }
 
+func expr() {
+	a, err := parser.ParseExpr(`1+12`)
+	if err != nil {
+		panic(err)
+	}
+	fmt.Println(a.Pos())
+	fmt.Printf("%q\n", a)
+	fmt.Printf("%q\n", a.Pos())
+	fmt.Printf("%q\n", a.End())
+
+	// FROM: http://qiita.com/tenntenn/items/f029425a844687a0e64b
+	var i int
+	ast.Inspect(a, func(n ast.Node) bool {
+		fmt.Printf("%s%[2]T %[2]v\n", strings.Repeat(" ", i), n)
+		if n != nil {
+			i++
+		} else {
+			i--
+		}
+		return true
+	})
+	format.Node(os.Stdout, token.NewFileSet(), a)
+}
+
 func main() {
+	split("helloParser")
 	helloParser()
+	split("expr")
+	expr()
 }

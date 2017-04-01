@@ -82,11 +82,21 @@ func expr() {
 		return true
 	})
 	format.Node(os.Stdout, token.NewFileSet(), a)
+	println()
+}
+
+func applay() {
+	a, err := parser.ParseExpr(`1+12`)
+	if err != nil {
+		panic(err)
+	}
 }
 
 func main() {
-	split("helloParser")
+	split("helloParser()")
 	helloParser()
-	split("expr")
+	split("expr()")
 	expr()
+	split("applay()")
+	applay()
 }

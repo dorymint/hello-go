@@ -74,6 +74,8 @@ func slice() {
 	fmt.Printf("ss[:0], %q\n", ss[:0])
 	fmt.Printf("ss[:1], %q\n", ss[:1])
 	fmt.Printf("ss[:5], %q\n", ss[:5])
+
+	fmt.Println((ss[1:])[1:])
 }
 
 func main() {

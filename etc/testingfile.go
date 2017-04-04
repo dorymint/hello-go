@@ -78,6 +78,12 @@ func slice() {
 	fmt.Println((ss[1:])[1:])
 }
 
+func output() {
+	fmt.Println("print test")
+	fmt.Print("\n\nhi\n")
+	fmt.Printf("%s\n", "\n\nhi")
+}
+
 func main() {
 	split("typeCheck")
 	typeCheck()
@@ -89,4 +95,6 @@ func main() {
 	quotientRemainder()
 	split("slice")
 	slice()
+	split("output")
+	output()
 }

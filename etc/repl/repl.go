@@ -22,10 +22,14 @@ func read(msg string) string {
 }
 
 func get(url string) ([]byte, error) {
+	if strings.HasPrefix(url, "http") == false {
+		url = "https://" + url
+	}
 	resp, err := http.Get(url)
 	if err != nil {
 		return nil, err
 	}
+	defer resp.Body.Close()
 	return ioutil.ReadAll(resp.Body)
 }
 

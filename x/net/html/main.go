@@ -7,6 +7,7 @@ import (
 	"io"
 	"io/ioutil"
 	"log"
+	"os"
 	"strconv"
 )
 
@@ -16,12 +17,12 @@ func split(str string) {
 	fmt.Println("----------", str, "----------")
 }
 
-func get(file string) ([]byte, error) {
+func getByte(file string) []byte {
 	b, err := ioutil.ReadFile(file)
 	if err != nil {
-		return nil, err
+		log.Fatal(err)
 	}
-	return b, nil
+	return b
 }
 
 func tokenize(b []byte) error {
@@ -110,12 +111,7 @@ func parse(b []byte) error {
 
 func q1(f string) {
 	split("q1 " + f)
-	b, err := get(f)
-	if err != nil {
-		log.Fatal(err)
-	}
-	split("tokenTypes")
-	tokenTypes()
+	b := getByte(f)
 	split("tokenize")
 	if err := tokenize(b); err != nil && err != io.EOF {
 		log.Fatal("tokenize: " + err.Error())
@@ -130,7 +126,65 @@ func q1(f string) {
 	}
 }
 
+func q2(f string) {
+	b := getByte(f)
+	z := html.NewTokenizer(bytes.NewReader(b))
+
+	for tt := z.Next(); ; tt = z.Next() {
+		if tt == html.ErrorToken {
+			fmt.Fprintln(os.Stderr, z.Err())
+			return
+		}
+		fmt.Println("tt   :", tt)
+		fmt.Println("z.Raw:", string(z.Raw()))
+	}
+}
+
+func parseContent(file string) {
+	var check []string
+
+	b := getByte(file)
+	node, err := html.Parse(bytes.NewReader(b))
+	if err != nil {
+		fmt.Fprintln(os.Stderr, err)
+		return
+	}
+
+	var f func(*html.Node)
+	f = func(n *html.Node) {
+		if n.Data == "meta" {
+			ogImage := false
+			for _, a := range n.Attr {
+				fmt.Println(" ", a.Key)
+				fmt.Println("   ", a.Val)
+				if ogImage && a.Key == "content" {
+					check = append(check, a.Val)
+				}
+				if a.Key == "property" && a.Val == "og:image" {
+					ogImage = true
+				}
+			}
+		}
+		for c := n.FirstChild; c != nil; c = c.NextSibling {
+			f(c)
+		}
+	}
+	f(node)
+	for _, c := range check {
+		fmt.Println("check:", c)
+	}
+}
+
 func main() {
-	q1("./t.html")
-	q1("./mock.html")
+	split("tokenTypes")
+	tokenTypes()
+	if false {
+		split("q1")
+		q1("./t.html")
+		q1("./mock.html")
+		split("q2")
+		q2("./mock.html")
+	}
+	split("parseContent")
+	parseContent("./mock.html")
 }

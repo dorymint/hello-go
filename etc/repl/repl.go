@@ -57,11 +57,12 @@ func interactive(pre string) error {
 			fmt.Println("exit")
 			return nil
 		case "get":
-			if b, err := get(read("rul>")); err != nil {
+			b, err := get(read("rul>"))
+			if err != nil {
 				errch <- err.Error()
-			} else {
-				ch <- string(b)
+				continue
 			}
+			ch <- string(b)
 		default:
 			ch <- sc.Text()
 		}

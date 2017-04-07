@@ -30,7 +30,11 @@ func get(url string) ([]byte, error) {
 		return nil, err
 	}
 	defer resp.Body.Close()
-	return ioutil.ReadAll(resp.Body)
+	b, err := ioutil.ReadAll(resp.Body)
+	if err != nil {
+		return nil, err
+	}
+	return b, nil
 }
 
 func outNew(out *os.File, prefix string) chan<- string {
@@ -57,7 +61,7 @@ func interactive(pre string) error {
 			fmt.Println("exit")
 			return nil
 		case "get":
-			b, err := get(read("rul>"))
+			b, err := get(read(pre + ":get:rul>"))
 			if err != nil {
 				errch <- err.Error()
 				continue

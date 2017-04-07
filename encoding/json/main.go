@@ -4,6 +4,7 @@ import (
 	"bytes"
 	"encoding/json"
 	"fmt"
+	"io/ioutil"
 	"log"
 	"reflect"
 	"strings"
@@ -130,11 +131,83 @@ func customMarshal() {
 	}
 }
 
+func readJSON() {
+	// JSONのkeyが大文字小文字の違いだけならstructにタグを書かなくてもマッピングしてくれる
+	type taskJSON struct {
+		Taskname    string
+		Description string
+		Content     string
+	}
+	var t []taskJSON
+	b, err := ioutil.ReadFile("./readJSON.json")
+	if err != nil {
+		log.Fatal(err)
+	}
+	fmt.Println(string(b))
+	err = json.Unmarshal(b, &t)
+	if err != nil {
+		log.Fatal(err)
+	}
+	fmt.Println(t)
+	for i, v := range t {
+		fmt.Println(i)
+		fmt.Println("  taskname:", v.Taskname)
+		fmt.Println("  description:", v.Description)
+		fmt.Println("  content:", v.Content)
+	}
+}
+
+func writeJSON() {
+	// 書き込むときはタグを付けないとそのまま大文字で出力されてしまう
+	type taskJSON struct {
+		Taskname    string `json:"taskname"`
+		Description string `json:"description"`
+		Content     string `json:"content"`
+	}
+	var t []taskJSON
+	b, err := ioutil.ReadFile("./readJSON.json")
+	if err != nil {
+		log.Fatal(err)
+	}
+	err = json.Unmarshal(b, &t)
+	if err != nil {
+		log.Fatal(err)
+	}
+	t = append(t, taskJSON{
+		Taskname:    "writeJSON",
+		Description: "wirte test",
+		Content:     "nyan",
+	})
+
+	// no indent
+	out, err := json.Marshal(t)
+	if err != nil {
+		log.Fatal(err)
+	}
+	fmt.Println(string(out))
+
+	// indent
+	out, err = json.MarshalIndent(t, "", "  ")
+	if err != nil {
+		log.Fatal(err)
+	}
+	fmt.Println(string(out))
+
+	if err := ioutil.WriteFile("./writeJSON.json", out, 0600); err != nil {
+		log.Fatal(err)
+	}
+}
+
 func main() {
+	log.SetFlags(log.Lshortfile)
 	split("helloJSON")
 	helloJSON()
 	split("compact")
 	compact()
 	split("customMarshal")
 	customMarshal()
+	split("readJSON")
+	readJSON()
+	split("writeJSON")
+	writeJSON()
 }

@@ -84,6 +84,10 @@ func output() {
 	fmt.Printf("%s\n", "\n\nhi")
 }
 
+func ff() {
+	print(0xff)
+}
+
 func main() {
 	split("typeCheck")
 	typeCheck()
@@ -97,4 +101,6 @@ func main() {
 	slice()
 	split("output")
 	output()
+	split("ff")
+	ff()
 }

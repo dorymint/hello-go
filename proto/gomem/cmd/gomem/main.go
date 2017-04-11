@@ -7,7 +7,7 @@ import (
 	"os"
 	"strings"
 
-	gomem "github.com/dory/hello-go/proto/go-gomem"
+	gomem "github.com/dory/hello-go/proto/gomem"
 )
 
 // Return do not close channel
@@ -70,6 +70,6 @@ func interactive() {
 }
 
 func main() {
-	fmt.Println(gomem.Add(2, 3))
+	fmt.Println(gomem.AddNum(2, 3))
 	interactive()
 }

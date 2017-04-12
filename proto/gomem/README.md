@@ -4,6 +4,7 @@ gomem
 2. accept in/out JSON
 
 ---
+**mermaid**
 ```mermaid
 graph TD
 

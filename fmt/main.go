@@ -9,7 +9,7 @@ import (
 )
 
 func main() {
-	fmt.Fprint(os.Stdout, "test")
+	fmt.Fprint(os.Stdout, "clear test")
 
 	time.Sleep(time.Second)
 	fmt.Fprint(os.Stdout, "\033c")
@@ -24,10 +24,10 @@ func main() {
 		log.Fatal(err)
 	}
 
+
 	Hi()
 	HiDup()
 	Hello()
-
 	time.Sleep(time.Second)
 	Clear()
 	fmt.Println("after clear")

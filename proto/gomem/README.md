@@ -9,7 +9,7 @@ gomem
 graph TD
 
 subgraph CLI
-  out[stdout / file]
+  out[stdout or file]
   in[stdin]
 end
 

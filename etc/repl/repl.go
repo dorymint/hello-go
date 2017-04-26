@@ -41,8 +41,16 @@ func outNew(out *os.File, prefix string) chan<- string {
 	ch := make(chan string)
 	go func() {
 		for {
-			fmt.Fprint(out, prefix)
-			fmt.Fprintln(out, <-ch)
+			_, err := fmt.Fprint(out, prefix)
+			if err != nil {
+				close(ch)
+				return
+			}
+			_, err = fmt.Fprintln(out, <-ch)
+			if err != nil {
+				close(ch)
+				return
+			}
 		}
 	}()
 	return ch
@@ -74,7 +82,15 @@ func interactive(pre string) error {
 	return fmt.Errorf("interactiv(): fatal")
 }
 
+var s = `
+start repl!
+commands
+[exit] [q] [:q] [quit]	stop the repl
+[get]	get web content from url
+
+`
 func main() {
+	fmt.Println(s)
 	err := interactive("repl>")
 	if err != nil {
 		log.Fatal(err)

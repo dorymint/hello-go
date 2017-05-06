@@ -1,16 +1,15 @@
 package main
 
-// TODO: List
-//     : implemetation methods
-//     : get Title, push *Gomem,
-//     : convert JSON
-//     : interactive repl
-
 import (
 	"bufio"
+	"flag"
 	"fmt"
 	"log"
 	"os"
+)
+
+var (
+	interactive = flag.Bool("interactive", false, "")
 )
 
 func split(str string) {
@@ -26,6 +25,21 @@ type Gomem struct {
 	//WriteDate string // use time.Parse(time.layout, Gomem.WriteDate)
 }
 
+func (g *Gomem) String() string {
+	if g == nil {
+		return ""
+	}
+	var str string
+	str += fmt.Sprintf("---\n")
+	str += fmt.Sprintf("Title: \"%s\"\n", g.Title)
+	str += fmt.Sprintf("Content: \"%s\"\n", g.Content)
+	str += fmt.Sprintf("Tags:\n")
+	for _, t := range g.Tags {
+		str += fmt.Sprintf("  - \"%s\"\n", t)
+	}
+	return str
+}
+
 type Gomems []*Gomem
 
 func (g *Gomems) String() string {
@@ -34,16 +48,7 @@ func (g *Gomems) String() string {
 	}
 	var str string
 	for _, x := range *g {
-		if x == nil {
-			continue
-		}
-		str += "---\n"
-		str += fmt.Sprintf("Title: \"%s\"\n", x.Title)
-		str += fmt.Sprintf("Content: \"%s\"\n", x.Content)
-		str += fmt.Sprintf("Tags:\n")
-		for _, t := range x.Tags {
-			str += fmt.Sprintf("  - \"%s\"\n", t)
-		}
+		str += fmt.Sprintln(x)
 	}
 	return str
 }
@@ -66,6 +71,16 @@ func gomemNew(title string, content string, tags []string) *Gomem {
 	}
 }
 
+func read(msg string) string {
+	fmt.Print(msg)
+	sc := bufio.NewScanner(os.Stdin)
+	sc.Scan()
+	if sc.Err() != nil {
+		log.Fatalf("read(): %v", sc.Err())
+	}
+	return sc.Text()
+}
+
 func repl(g *Gomems) {
 	fmt.Print("repl:>")
 	for sc := bufio.NewScanner(os.Stdin); sc.Scan(); {
@@ -78,7 +93,11 @@ func repl(g *Gomems) {
 			fmt.Println("see you later :)")
 			return
 		case "get":
-			fmt.Printf("%q\n", get())
+			fmt.Printf("%s\n", g)
+		case "new":
+			newg := gomemNew(read("title:>"), read("content:>"), []string{read("tag:>")})
+			*g = append(*g, newg)
+			fmt.Println(newg)
 		default:
 			fmt.Println(s)
 		}
@@ -88,7 +107,7 @@ func repl(g *Gomems) {
 
 // mock
 func get() *Gomem {
-	return &Gomem {
+	return &Gomem{
 		Title:   "hello",
 		Content: "hello from gops a new instance",
 		Tags:    []string{"gops", "new", "hello", "todo"},
@@ -97,10 +116,13 @@ func get() *Gomem {
 
 func main() {
 	log.SetPrefix("gomem: ")
-
-	repl(new(Gomems))
-
+	flag.Parse()
 	gops := new(Gomems)
+
+	if *interactive {
+		repl(gops)
+	}
+
 	*gops = append(*gops, &Gomem{
 		Title:   "hello",
 		Content: "hello from gops a new instance",

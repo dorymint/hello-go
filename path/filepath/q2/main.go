@@ -10,10 +10,11 @@ func split(str string) {
 }
 
 func q1() {
+	fmt.Println("separator:", string(filepath.Separator))
+	fmt.Println("dir:", filepath.Dir("./t//tdfklj/"))
 	fmt.Println(filepath.Abs("./t//dfj"))
 	fmt.Println(filepath.Abs("./t//dfj/"))
-	fmt.Println(filepath.Dir("./t//tdfklj/"))
-	fmt.Println(string(filepath.Separator))
+	fmt.Println(filepath.Abs(""))
 }
 
 func main() {

@@ -117,7 +117,7 @@ func getJSON(dir string) ([]string, error) {
 //    : 3. switch interactive noninteractive
 // inter: 0. init to doit run repl
 // noninter: 0. do the subcommands
-// NEXT TODO: impl subcommands
+// NEXT impl subcommands
 
 /* read repl */
 func read(msg string) string {

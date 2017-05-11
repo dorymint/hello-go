@@ -51,7 +51,7 @@ func init() {
 	*root, err = os.Getwd()
 	fatalIF("init", err)
 
-	// TEST:TODO: delete
+	// TEST:
 	*root = "../hello-go"
 
 	flag.Parse()
@@ -93,7 +93,6 @@ func flagView() error {
 //}
 
 // TODOGather get file list and return TODOList
-// TODO:
 func TODOGather() error {
 	dir, err := os.Open(*root)
 	fatalIF("os.Open", err)
@@ -145,7 +144,7 @@ func fileInGather(filename string) (str []string, err error) {
 	return
 }
 
-// TODO: 取り敢えず...ディレクトリネームだけを集めてみる
+// 取り敢えず...ディレクトリネームだけを集めてみる
 // 作りがかなり怪しい...もっとシンプルにしたい...
 func dirsGather(searchRoot string) []string {
 	result := make([]string, 0, 1000)

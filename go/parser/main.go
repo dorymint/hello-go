@@ -90,7 +90,6 @@ func applay() {
 	if err != nil {
 		panic(err)
 	}
-	// TODO: 2017/04/02 10:03
 	fmt.Println(a)
 }
 

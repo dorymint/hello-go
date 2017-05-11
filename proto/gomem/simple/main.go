@@ -76,7 +76,7 @@ func (gs *Gomems) AddFile(fpath string, title string, tags []string,  override b
 }
 
 ///
-/// TODO: implementation Gomems shell
+///     : implementation Gomems shell
 ///
 func mock(g *Gomems) error {
 	fmt.Println("called mock")

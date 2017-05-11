@@ -45,7 +45,7 @@ func echoback(conn net.Conn, call string) error {
 	log.Println("CLIENT:", conn.LocalAddr(), " | ", conn.RemoteAddr(), "CONNECTED")
 	conn.SetDeadline(time.Now().Add(time.Minute * 10))
 
-	// TODO: コネクションを使いまわして server とやり取りできるように
+	//     : コネクションを使いまわして server とやり取りできるように
 	//     : 入力と処理、表示の分割
 
 	conn.SetWriteDeadline(time.Now().Add(time.Second * 10))

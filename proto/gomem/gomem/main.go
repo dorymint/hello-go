@@ -21,7 +21,6 @@ type Gomem struct {
 	Content string
 	Tags    []string
 
-	// TODO: imple WriteDate string
 	//WriteDate string // use time.Parse(time.layout, Gomem.WriteDate)
 }
 
@@ -87,7 +86,6 @@ func repl(g *Gomems) {
 		if sc.Err() != nil {
 			log.Fatalf("repl:%v", sc.Err())
 		}
-		// TODO: implement commands?
 		switch s := sc.Text(); s {
 		case "exit", "quit", "q":
 			fmt.Println("see you later :)")

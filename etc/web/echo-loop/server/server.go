@@ -41,7 +41,6 @@ func handleConnection(conn net.Conn) {
 		log.Println("SERVER:conn.SetDeadline: ", err)
 		return
 	}
-	// TODO: implementation echoback
 	for {
 		conn.SetReadDeadline(time.Now().Add(time.Second * 10))
 		// line には '\n' まで含まれてるっぽい

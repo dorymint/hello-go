@@ -7,7 +7,7 @@ import (
 	"os"
 )
 
-var flagColor = flag.Bool("color", false, "")
+var flagColor = flag.Bool("color-off", false, "")
 
 func init() {
 	flag.Parse()

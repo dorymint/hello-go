@@ -22,29 +22,32 @@ func main() {
 	fmt.Fprintln(os.Stdout, color.MagentaString("hello string"))
 
 	fmt.Println("color list")
-	fns := []func(string, ...interface{}){
-		func(s string, i ...interface{}) { fmt.Println("----- Colors -----") },
-		color.Black,
-		color.Red,
-		color.Green,
-		color.Yellow,
-		color.Blue,
-		color.Magenta,
-		color.Cyan,
-		color.White,
+	fns := []struct {
+		f func(string, ...interface{})
+		c string
+	}{
+		{func(s string, i ...interface{}) { fmt.Println("----- Colors -----") }, ""},
+		{color.Black, "Black"},
+		{color.Red, "Red"},
+		{color.Green, "Green"},
+		{color.Yellow, "Yellow"},
+		{color.Blue, "Blue"},
+		{color.Magenta, "Magenta"},
+		{color.Cyan, "Cyan"},
+		{color.White, "White"},
 
-		func(s string, i ...interface{}) { fmt.Println("----- Hi Colors -----") },
-		color.HiBlack,
-		color.HiRed,
-		color.HiGreen,
-		color.HiYellow,
-		color.HiBlue,
-		color.HiMagenta,
-		color.HiCyan,
-		color.HiWhite,
+		{func(s string, i ...interface{}) { fmt.Println("----- Hi Colors -----") }, ""},
+		{color.HiBlack, "HiBlack"},
+		{color.HiRed, "HiRed"},
+		{color.HiGreen, "HiGreen"},
+		{color.HiYellow, "HiYellow"},
+		{color.HiBlue, "HiBlue"},
+		{color.HiMagenta, "HiMagenta"},
+		{color.HiCyan, "HiCyan"},
+		{color.HiWhite, "HiWhite"},
 	}
 
 	for _, f := range fns {
-		f("colors !!")
+		f.f(f.c)
 	}
 }

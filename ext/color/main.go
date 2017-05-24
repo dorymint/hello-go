@@ -21,7 +21,7 @@ func main() {
 
 	fmt.Fprintln(os.Stdout, color.MagentaString("hello string"))
 
-	fmt.Println("color list")
+	fmt.Println("----- color list -----")
 	fns := []struct {
 		f func(string, ...interface{})
 		c string

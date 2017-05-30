@@ -13,7 +13,7 @@ import (
 var (
 	// Example: godoc -http ":6060"
 	url = flag.String("url", "http://localhost:6060/", "")
-	out      = flag.String("out", "", "")
+	out = flag.String("out", "", "")
 )
 
 // Checking after persing flags

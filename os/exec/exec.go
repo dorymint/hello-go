@@ -31,7 +31,7 @@ func main() {
 
 	fmt.Println("\ntodogotcha")
 
-	todogotcha := exec.Command("todogotcha", "-root", "./", "-result", "off")
+	todogotcha := exec.Command("todogotcha", "-root", "./")
 	// TODO: This TODO is test.
 	todogotcha.Stdout = os.Stdout
 	todogotcha.Stderr = os.Stderr

@@ -8,14 +8,12 @@ import (
 	"path/filepath"
 )
 
-// str is from function infomation.
 func fatalIF(str string, err error) {
 	if err != nil {
-		log.Fatalf("%s:%v\n", str, err)
+		log.Fatalf("%s:%v", str, err)
 	}
 }
 
-// flags
 var (
 	root = flag.String("root", "./", "Specify search root")
 )
@@ -25,10 +23,6 @@ func init() {
 	flag.Parse()
 	*root, err = filepath.Abs(*root)
 	fatalIF("init", err)
-}
-
-func proccess() error {
-	return nil
 }
 
 func main() {

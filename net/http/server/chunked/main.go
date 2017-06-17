@@ -37,6 +37,7 @@ func getb() []byte {
 }
 
 func ImageUpdateServer(w http.ResponseWriter, req *http.Request) {
+	log.Printf("connect:%+v\t%+v\n", req.RemoteAddr, req.RequestURI)
 	var b []byte
 	buf := bytes.NewBuffer(b)
 

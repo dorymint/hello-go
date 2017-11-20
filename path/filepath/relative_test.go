@@ -1,4 +1,4 @@
-package relative
+package fp
 
 import (
 	"fmt"
@@ -34,12 +34,4 @@ func TestRel(t *testing.T) {
 		str += fmt.Sprintf("out:\t%#v\n", out)
 		t.Log(str)
 	}
-}
-
-func TestAbs(t *testing.T) {
-	pwd, err := filepath.Abs("")
-	if err != nil {
-		t.Fatal(err)
-	}
-	t.Log("pwd:", pwd)
 }

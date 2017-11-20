@@ -23,4 +23,10 @@ func TestAbs(t *testing.T) {
 		}
 		t.Logf("%d\nin:\t%#v\nout:\t%#v\n", i, x, p)
 	}
+
+	pwd, err := filepath.Abs("")
+	if err != nil {
+		t.Fatal(err)
+	}
+	t.Log("pwd:", pwd)
 }

@@ -1,4 +1,4 @@
-package abs
+package fp
 
 import (
 	"path/filepath"

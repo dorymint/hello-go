@@ -24,3 +24,9 @@ func TestAbs(t *testing.T) {
 		t.Logf("%d\nin:\t%#v\nout:\t%#v\n", i, x, p)
 	}
 }
+
+func TestJoin(t *testing.T) {
+	in := filepath.Join("", ".hello")
+	out, err := filepath.Abs(in)
+	t.Log("in:", in, "out:", out, "err:", err)
+}

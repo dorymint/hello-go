@@ -1,4 +1,4 @@
-package main
+package fp
 
 import (
 	"flag"
@@ -49,4 +49,6 @@ func main() {
 
 	// filepath.Dir is get current directory
 	fmt.Println(filepath.Dir(*root))
+
+	fmt.Println(filepath.Join("", ".hello"))
 }

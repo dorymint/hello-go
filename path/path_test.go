@@ -1,34 +1,28 @@
-package main
+package p
 
 import (
-	"fmt"
 	"path"
+	"testing"
 )
 
-func clean() {
-	fmt.Println("clean:")
-
+func TestClean(t *testing.T) {
 	unix := `/../test`
-	fmt.Println("unix:", unix, "to", path.Clean(unix))
+	t.Log("unix:", unix, "to", path.Clean(unix))
 
 	win := `c:\windows\..\path`
-	fmt.Println("windows:", win, "to", path.Clean(win))
-	// out: windows: c:\windows\..\path to c:\windows\..\path
+	t.Log("windows:", win, "to", path.Clean(win))
 }
 
-func main() {
+func TestJoin(t *testing.T) {
 	ss := []string{
 		"hello",
 		"world",
 	}
-	fmt.Println(path.Join(ss...))
+	t.Log(path.Join(ss...))
+
 	ss2 := []string{
 		"http://hello///world/",
 		"testbase.html",
 	}
-	fmt.Println(path.Join(ss2...))
-	// trimed // >> /
-	// http:/hello/world/testbase.html
-
-	clean()
+	t.Log(path.Join(ss2...))
 }

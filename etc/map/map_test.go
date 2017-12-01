@@ -1,8 +1,8 @@
-package main
+package m
 
 import (
 	"fmt"
-	"log"
+	"testing"
 )
 
 type Gomem struct {
@@ -26,14 +26,30 @@ func (g *Gomems) mock() error {
 	return fmt.Errorf("g != nil: test error")
 }
 
-func main() {
-	log.SetFlags(log.Lshortfile)
+func TestGomem(t *testing.T) {
 	const testPath = "./test.json"
 
 	gs := make(Gomems)
-	fmt.Println(gs)
+	t.Log(gs)
 	gs[testPath] = gomemNew("test", "content")
-	fmt.Println(gs)
-	fmt.Println(gs[testPath])
-	fmt.Println(gs.mock())
+	t.Log(gs)
+	t.Log(gs[testPath])
+	t.Log(gs.mock())
+}
+
+func TestMap(t *testing.T) {
+	m := make(map[rune]bool)
+	t.Log("m len:", len(m))
+	m['h'] = true
+	t.Log("m+\"h\" len:", len(m))
+
+	m2 := make(map[rune]bool, 2)
+	t.Log("m2 len:", len(m2))
+	m2['h'] = true
+	t.Log("m2+\"h\" lne:", len(m2))
+
+	for _, s := range("hello world") {
+		m2[s] = true
+	}
+	t.Log("m2+\"hello world\"", len(m2))
 }

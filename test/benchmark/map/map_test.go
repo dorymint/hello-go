@@ -1,4 +1,4 @@
-package benchmap
+package bm
 
 import (
 	"io/ioutil"

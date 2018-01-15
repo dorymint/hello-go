@@ -19,7 +19,9 @@ func TestSimple(t *testing.T) {
 func TestFind(t *testing.T) {
 	reg := "[0-9]+"
 	match := regexp.MustCompile(reg)
-	str := "test 123456 test" + "\n" + "test" + "\n" + "7890 test"
+	str := `test 123456 test
+test
+7890 test`
 	loc := match.FindStringIndex(str)
 	t.Log(loc)
 	t.Log(str[loc[0]:loc[1]])

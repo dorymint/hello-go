@@ -23,6 +23,8 @@ func main() {
 			log.Println("ln.Accept error:", err)
 			continue
 		}
+		log.Println("conn.RemoteAddr().String()", conn.RemoteAddr().String())
+		log.Println("conn.RemoteAddr().Network()", conn.RemoteAddr().Network())
 
 		go handleConnection(conn)
 	}

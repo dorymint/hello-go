@@ -15,7 +15,6 @@ func TestSimple(t *testing.T) {
 	}
 }
 
-// TODO: impl
 func TestFind(t *testing.T) {
 	reg := "[0-9]+"
 	match := regexp.MustCompile(reg)

@@ -17,7 +17,7 @@ func printBlue(str string) {
 	fmt.Print("\x1b[0m")
 }
 
-func helloFlag(){
+func helloFlag() {
 	printRed("helloFlag\n")
 	f := flag.Int("flag1", 0, "this is flag1 help msg")
 	fmt.Println("flag.Args:", flag.Args())
@@ -44,6 +44,7 @@ func helloFlag(){
 }
 
 var flagvar int
+
 func init() {
 	printRed("init\n")
 	flag.IntVar(&flagvar, "flagname", 1234, "help message for flagname")
@@ -52,7 +53,6 @@ func init() {
 	// flag.Parse()を呼んでいないので反映されない
 	printBlue(fmt.Sprintln("flagvvar:", flagvar))
 }
-
 
 func flagUsage() {
 	printRed("flagUsage\n")
@@ -73,7 +73,7 @@ func parseTest() {
 	fmt.Println(flagvar) // flagvar=入力された値
 	flagvar = 0
 	fmt.Println(flagvar) // 0
-	flag.Parse() // 二回目以降もパースされる
+	flag.Parse()         // 二回目以降もパースされる
 	fmt.Println(flagvar) // flagvar=入力された値
 
 	// NOTE:

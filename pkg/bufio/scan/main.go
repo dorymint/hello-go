@@ -11,7 +11,11 @@ import (
 func main() {
 	go func() {
 		sc := bufio.NewScanner(os.Stdin)
-		for sc.Scan() {
+		f := func() bool {
+			fmt.Print(">> ")
+			return sc.Scan()
+		}
+		for f() {
 			if err := sc.Err(); err != nil {
 				log.Fatal(err)
 			}

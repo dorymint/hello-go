@@ -58,5 +58,7 @@ func main() {
 	})
 
 	// Server Running
-	log.Fatal(http.ListenAndServe(":8080", nil))
+	port := ":8080"
+	fmt.Printf("Serve Running at %s\n", port)
+	log.Fatal(http.ListenAndServe(port, nil))
 }

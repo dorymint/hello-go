@@ -7,7 +7,7 @@ import (
 )
 
 func main() {
-	cmd := exec.Command("sh", "-c", "read key && echo \"key = ${key}\"")
+	cmd := exec.Command("sh", "-c", `printf "read >"; read key && echo "key = $key"`)
 	cmd.Stdin = os.Stdin
 	cmd.Stdout = os.Stdout
 	cmd.Stderr = os.Stderr
@@ -17,5 +17,5 @@ func main() {
 	if err := cmd.Wait(); err != nil {
 		panic(err)
 	}
-	fmt.Println("exit")
+	fmt.Println("exit main")
 }

@@ -1,48 +1,52 @@
 package fizzbuzz
 
 import (
+	"errors"
 	"fmt"
 	"time"
 )
 
-var fizzBuzzError = string(":negativ number and 0 is invalid")
-
+var ErrUnexpectedNumber = errors.New("unexpected number")
 
 // FizzBuzz fizzbuzz! count from to n
 func FizzBuzz(n int) error {
-	if n <= 0 { return fmt.Errorf("FizzBuzz()%s:%d", fizzBuzzError, n) }
+	if n <= 0 {
+		return fmt.Errorf("FizzBuzz():%s:%d", ErrUnexpectedNumber, n)
+	}
 	for i := 1; i <= n; i++ {
 		time.Sleep(time.Millisecond * 100)
-		str, err := SfizzBuzz(i)
-		if err != nil { return err }
-		fmt.Println(str)
+		fmt.Println(SfizzBuzz(i))
 	}
 	return nil
 }
 
 // SfizzBuzz return single string
-func SfizzBuzz(n int) (string, error) {
-	if n <= 0 {
-		return "", fmt.Errorf("SfizzBuzz()%s:%d", fizzBuzzError, n)
+func SfizzBuzz(n int) string {
+	switch {
+	case n%15 == 0:
+		return fmt.Sprint("fizzbuzz")
+	case n%3 == 0:
+		return fmt.Sprint("fizz")
+	case n%5 == 0:
+		return fmt.Sprint("buzz")
+	default:
+		return fmt.Sprintf("%d", n)
 	}
-	if n%15 == 0 { return fmt.Sprint("fizzbuzz"), nil }
-	if n%3 == 0 { return fmt.Sprint("fizz"), nil }
-	if n%5 == 0 { return fmt.Sprint("buzz"), nil }
-	return fmt.Sprintf("%d", n), nil
 }
-
 
 // ShowFizzBuzz count from to n
 func ShowFizzBuzz(n int) error {
-	if n <= 0 { return fmt.Errorf("FizzBuzz()%s:%d",fizzBuzzError, n) }
+	if n <= 0 {
+		return fmt.Errorf("FizzBuzz()%s:%d", ErrUnexpectedNumber, n)
+	}
 	for i := 1; i <= n; i++ {
-		if i % 15 == 0 {
+		if i%15 == 0 {
 			fmt.Println("fizzbuzz")
 			continue
 		}
-		if i % 3 == 0 {
+		if i%3 == 0 {
 			fmt.Println("fizz")
-		} else if i % 5 == 0 {
+		} else if i%5 == 0 {
 			fmt.Println("buzz")
 		} else {
 			fmt.Println(i)

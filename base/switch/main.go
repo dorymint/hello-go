@@ -5,12 +5,14 @@ import (
 )
 
 func main() {
+	fmt.Println("--- can not break the for loops ---")
 	for i := 0; i < 10; i++ {
 		switch i {
 		case 3:
-			fmt.Println("hi!")
+			fmt.Println("hello")
 		case 4:
-			fmt.Printf("\tcan not break!\n\tif you want to stop the for loop then use label\n")
+			fmt.Printf("can not break!\n")
+			fmt.Printf("if you want to stop the for loop then use label\n")
 			break
 		default:
 			fmt.Println(i)
@@ -22,8 +24,9 @@ L:
 	for i := 0; i < 10; i++ {
 		switch i {
 		case 3:
-			fmt.Println("hi!")
+			fmt.Println("hello")
 		case 4:
+			fmt.Println("break")
 			break L
 		default:
 			fmt.Println(i)

@@ -1,7 +1,5 @@
-
 // from
 // http://qiita.com/qt-luigi/items/ec6cd349259fe6cc29eb
-
 
 package main
 
@@ -18,16 +16,16 @@ import (
 )
 
 var (
-	N	int	=	20
+	N int = 20
 	//xm	float64	=	0.0
 	//ym	float64	=	0.6
 	//h	float64	=	0.6
 )
 
 var (
-	width	int	=	500
-	height	int	=	500
-	filename	string	=	"shida.png"
+	width    int    = 500
+	height   int    = 500
+	filename string = "shida.png"
 )
 
 var (
@@ -68,22 +66,22 @@ func W4y(x, y float64) float64 {
 func f(m *image.RGBA, k int, x, y float64) {
 	comperison := func() bool { return rand.Float64() < 0.3 }
 	if 0 < k {
-		f(m, k-1, W1x(x,y), W1y(x,y))
+		f(m, k-1, W1x(x, y), W1y(x, y))
 		if comperison() {
-			f(m, k-1, W2x(x,y), W2y(x,y))
+			f(m, k-1, W2x(x, y), W2y(x, y))
 		}
 		if comperison() {
-			f(m, k-1, W2x(x,y), W2y(x,y))
+			f(m, k-1, W2x(x, y), W2y(x, y))
 		}
 		if comperison() {
-			f(m, k-1, W3x(x,y), W3y(x,y))
+			f(m, k-1, W3x(x, y), W3y(x, y))
 		}
 		if comperison() {
-			f(m, k-1, W4x(x,y), W4y(x,y))
+			f(m, k-1, W4x(x, y), W4y(x, y))
 		}
 	} else {
 		var s float64 = 490.0
-		m.Set(int(x*s + float64(width)*0.5), int(float64(height)-y*s), linecolor)
+		m.Set(int(x*s+float64(width)*0.5), int(float64(height)-y*s), linecolor)
 	}
 }
 
@@ -105,7 +103,7 @@ func main() {
 	f(m, N, 0, 0)
 
 	file, err := os.Create(filename)
-	if err != nil{
+	if err != nil {
 		log.Fatal(err)
 	}
 	defer file.Close()
@@ -115,4 +113,3 @@ func main() {
 		log.Fatal(err)
 	}
 }
-

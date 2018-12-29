@@ -38,19 +38,6 @@ func ExampleFizzBuzz() {
 }
 
 func TestSfizzBuzz(t *testing.T) {
-	_, err := SfizzBuzz(10)
-	if err != nil {
-		t.Fatalf("SfizzzBuzz(10):expected err==nil...out %q", err)
-	}
-	_, err = SfizzBuzz(0)
-	if err == nil {
-		t.Fatalf("SfizzzBuzz(0):expected err!=nil...out %q", err)
-	}
-	_, err = SfizzBuzz(-10)
-	if err == nil {
-		t.Fatalf("SfizzBuzz(-10):expected err!=nil...out %q", err)
-	}
-
 	testData := []struct {
 		input    int
 		expected string
@@ -72,9 +59,7 @@ func TestSfizzBuzz(t *testing.T) {
 		{input: 15, expected: "fizzbuzz"},
 	}
 	for _, x := range testData {
-		out, err := SfizzBuzz(x.input)
-		if err != nil { t.Fatalf("Sfizzbuzz:%q", err) }
-		if out != x.expected {
+		if out := SfizzBuzz(x.input); out != x.expected {
 			t.Errorf("x.expected:%q ... out:%q", x.expected, out)
 		}
 	}
@@ -101,4 +86,3 @@ func ExampleShowFizzBuzz() {
 	// 14
 	// fizzbuzz
 }
-

@@ -3,36 +3,25 @@ package main
 import (
 	"fmt"
 	"sync"
-	"time"
 )
 
-var chRoot = make(chan string)
-
-func getch() chan<- string {
-	sendCh := make(chan string)
-	go func() {
-		for {
-			chRoot <- <-sendCh
-		}
-	}()
-	return sendCh
-}
-
 func main() {
+	ch := make(chan int)
 	var wg sync.WaitGroup
+
+	wg.Add(1)
 	go func() {
-		for {
-			fmt.Print(<-chRoot)
-			wg.Done()
+		defer wg.Done()
+		for i := 0; i < 5; i++ {
+			ch <- i
 		}
 	}()
 
-	ch := getch()
-	for i := 0; i < 10; i++ {
-		wg.Add(1)
+	go func() {
+		for {
+			fmt.Printf("%d loops\n", <-ch)
+		}
+	}()
 
-		ch <- fmt.Sprintf("i %d\n", i)
-		time.Sleep(1 * time.Second)
-	}
 	wg.Wait()
 }

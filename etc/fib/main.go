@@ -12,17 +12,10 @@ func fib(n uint) uint {
 }
 
 func main() {
-	fmt.Println(fib(1))
-	fmt.Println(fib(2))
-	fmt.Println(fib(3))
-	fmt.Println(fib(4))
-	fmt.Println(fib(5))
-	fmt.Println(fib(6))
-	fmt.Println(fib(7))
-	fmt.Println(fib(8))
-	fmt.Println(fib(9))
-	fmt.Println(fib(10))
+	for i := uint(1); i <= 10; i++ {
+		fmt.Printf("i=%d\t%d\n", i, fib(i))
+	}
 
-	/// destroy
-	fmt.Println(fib(10000000000000000))
+	// stack overflow
+	//fmt.Println(fib(10000000000000000))
 }

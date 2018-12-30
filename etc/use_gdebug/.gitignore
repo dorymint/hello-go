@@ -1,9 +1,6 @@
-
-
-# executable
-/use_gdebug
-/helloecho
-/*.log
+use_gdebug
+helloecho
+*.log
 
 _obj/*
 

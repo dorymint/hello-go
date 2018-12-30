@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8" />
+	<title>FrontPage</title>
+	<style>
+		.edit {
+			font-size: .8em;
+		}
+		details {
+			padding: .5em;
+			margin: auto;
+		}
+		details > summary {
+			font-size: 130%;
+		}
+		details > p {
+			border: 1px solid #aaa;
+			border-radius: 4px;
+			background: lightcyan;
+			color: black;
+			margin: auto;
+		}
+	</style>
+</head>
+<body>
+	<div>welcome to gowiki!</div>
+
+	<div>
+		<ul>
+			{{range .}}
+			<li>
+				<details open>
+					<summary>
+						<a href="/view/{{.Title}}">{{.Title}}</a>    <a href="/edit/{{.Title}}" class="edit">[edit]</a>
+					</summary>
+					<p>{{printf "%s" .Body}}</p>
+				</details>
+			</li>
+			{{end}}
+		</ul>
+	</div>
+</body>
+</html>

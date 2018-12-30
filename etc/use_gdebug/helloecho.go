@@ -1,13 +1,9 @@
-
-
 // デバッグシンボル付きのコンパイル
 // go build -gcflags "-N -l" <dst src>
 
 // gdb <exe file name>
 // run, list <n>, break <n>, delete <n>, print <v>,
 // info breakpoints...
-
-
 package main
 
 import (
@@ -22,8 +18,10 @@ func whileEcho(s string, n int) {
 	}
 }
 
-// 引数の chan<- int と chan int の違いわかってない
-// NOTE:chan<- で送信 <-chan で受信を明示してるっぽい? 単にchanだとどちらも使える?
+// 引数の chan<- int と chan int の違い
+// 送信専用: chan<- int
+// 受信専用: <-chan int
+// chan<- で送信 <-chan で受信を明示してる、単にchanだとどちらも使える
 func counting(c chan<- int) {
 	fmt.Printf("%p,%p,\n", c, &c)
 	for i := 0; i < 10; i++ {

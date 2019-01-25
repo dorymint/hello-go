@@ -41,6 +41,7 @@ func run() ExitCode {
 }
 
 func main() {
+	fmt.Println("random exit code")
 	exit := run()
 	fmt.Println(exit)
 	os.Exit(exit.Int())

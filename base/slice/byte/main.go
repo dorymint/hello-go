@@ -20,7 +20,7 @@ func main() {
 	fmt.Printf("%g\n", sl[0])
 	fmt.Printf("%g\n\n", sl[:2])
 
-	sl = append(sl, ':','p','p')
+	sl = append(sl, ':', 'p', 'p')
 	sl = append(sl, "ended"...)
 	fmt.Printf("sl=%s len=%d\n\n", sl, len(sl))
 }

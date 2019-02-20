@@ -2,22 +2,19 @@ package main
 
 import (
 	"fmt"
-	"time"
 )
 
 func main() {
 	ch := make(chan int)
 	go func() {
-		for i := 0; true; i++ {
+		for i := 0; i < 3; i++ {
 			ch <- i
-			time.Sleep(time.Second)
 		}
+		close(ch)
 	}()
 
+	// keep receive until closed
 	for i := range ch {
-		if i == 3 {
-			break
-		}
 		fmt.Println(i)
 	}
 }

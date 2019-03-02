@@ -22,6 +22,5 @@ func main() {
 		fmt.Println("version")
 	case *exit:
 		return
-		panic("unreachable")
 	}
 }

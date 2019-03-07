@@ -8,10 +8,6 @@ import (
 	"reflect"
 )
 
-func split(str string) {
-	fmt.Println("----------", str, "----------")
-}
-
 func eval(expr string) types.TypeAndValue {
 	tv, err := types.Eval(token.NewFileSet(), types.NewPackage("main", "main"), token.NoPos, expr)
 	if err != nil {
@@ -22,10 +18,10 @@ func eval(expr string) types.TypeAndValue {
 
 func typeInfo() {
 	tvof := func(tv types.TypeAndValue) {
-		fmt.Println(tv)
-		fmt.Println("", tv.Type)
-		fmt.Println("", tv.Value)
-		fmt.Println("", reflect.ValueOf(tv.Value).Type())
+		fmt.Printf("%+v\n", tv)
+		fmt.Printf("  %+v\n", tv.Type)
+		fmt.Printf("  %+v\n", tv.Value)
+		fmt.Printf("  %+v\n", reflect.ValueOf(tv.Value).Type())
 	}
 	tvof(eval("12 + 1"))
 	tvof(eval("int(12) + int(1)"))
@@ -34,6 +30,5 @@ func typeInfo() {
 }
 
 func main() {
-	split("typeInfo")
 	typeInfo()
 }

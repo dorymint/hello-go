@@ -1,0 +1,12 @@
+[
+  {
+    "name": "read",
+    "description": "short description",
+    "command": "read"
+  },
+  {
+    "name": "name",
+    "description": null,
+    "command": null
+  }
+]

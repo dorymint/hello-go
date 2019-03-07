@@ -1,5 +1,7 @@
 package main
 
+// Ref: http://qiita.com/tenntenn/items/f029425a844687a0e64b
+
 import (
 	"fmt"
 	"go/ast"
@@ -10,94 +12,86 @@ import (
 	"strings"
 )
 
-func split(str string) {
-	fmt.Println("----------", str, "----------")
-}
-
-func helloParser() {
+func parse() {
 	fset := token.NewFileSet()
-	f, err := parser.ParseFile(fset, "./t/nyan.go", nil, parser.ParseComments)
+	f, err := parser.ParseFile(fset, "./testdata/main.go", nil, parser.ParseComments)
 	if err != nil {
 		fmt.Println(err)
 		return
 	}
 
-	//fmt.Printf("%q\n", f)
+	fmt.Println("Imports:")
+	for _, i := range f.Imports {
+		fmt.Printf("\t%+v\n", i)
+	}
 
-	split("Imports")
-	for _, s := range f.Imports {
-		fmt.Println(s.Path.Value)
+	fmt.Println("Comments:")
+	for _, c := range f.Comments {
+		fmt.Printf("\t%+v\n", c)
 	}
-	split("Comments")
-	for _, s := range f.Comments {
-		fmt.Println(s.Text())
+
+	fmt.Println("Unresolved:")
+	for _, i := range f.Unresolved {
+		fmt.Printf("\t%+v\n", i)
 	}
-	split("Unresolved")
-	for _, s := range f.Unresolved {
-		fmt.Println(s)
-	}
-	split("Decls")
+
+	fmt.Println("Decls:")
 	for i := 0; i < len(f.Decls); i++ {
-		fmt.Println(f.Decls[i])
-		fmt.Println(f.Decls[i].Pos())
-		fmt.Println(fset.Position(f.Decls[i].Pos()))
+		fmt.Printf("\t%+v\n", f.Decls[i])
+		fmt.Printf("\t%+v\n", f.Decls[i].Pos())
+		fmt.Printf("\t%+v\n", fset.Position(f.Decls[i].Pos()))
 	}
-	split("nyan.go position")
-	// at package
-	fmt.Println(fset.Position(f.Pos()))
-	// at }
-	fmt.Println(fset.Position(f.End()))
 
-	split("Scope")
-	fmt.Println(f.Scope)
-	split("Scope main")
-	fmt.Println(f.Scope.Lookup("main"))
-	fmt.Println(f.Scope.Objects["main"].Kind)
-	fmt.Println(f.Scope.Objects["main"].Name)
-	fmt.Println(fset.Position(f.Scope.Objects["main"].Pos()))
-	split("Scope Lookup")
-	fmt.Println(f.Scope.Lookup("hi"))
-	fmt.Println(f.Scope.Lookup("nyan"))
+	fmt.Println("Position:")
+	// at package
+	fmt.Printf("\t%+v\n", fset.Position(f.Pos()))
+	// at }
+	fmt.Printf("\t%+v\n", fset.Position(f.End()))
+
+	fmt.Println("Scope:")
+	fmt.Printf("\t%+v\n", f.Scope)
+
+	fmt.Println("Scope main:")
+	fmt.Printf("\t%+v\n", f.Scope.Lookup("main"))
+	fmt.Printf("\t%+v\n", f.Scope.Objects["main"].Kind)
+	fmt.Printf("\t%+v\n", f.Scope.Objects["main"].Name)
+	fmt.Printf("\t%+v\n", fset.Position(f.Scope.Objects["main"].Pos()))
+
+	fmt.Println("Scope Lookup:")
+	fmt.Printf("\t%+v\n", f.Scope.Lookup("hi"))
+	fmt.Printf("\t%+v\n", f.Scope.Lookup("nyan"))
 }
 
 func expr() {
-	a, err := parser.ParseExpr(`1+12`)
+	e, err := parser.ParseExpr(`1+12`)
 	if err != nil {
 		panic(err)
 	}
-	fmt.Println(a.Pos())
-	fmt.Printf("%q\n", a)
-	fmt.Printf("%q\n", a.Pos())
-	fmt.Printf("%q\n", a.End())
+	fmt.Printf("\t%+v\n", e)
+	fmt.Printf("\t%+v\n", e.Pos())
+	fmt.Printf("\t%+v\n", e.End())
 
-	// FROM: http://qiita.com/tenntenn/items/f029425a844687a0e64b
-	var i int
-	ast.Inspect(a, func(n ast.Node) bool {
-		fmt.Printf("%s%[2]T %[2]v\n", strings.Repeat(" ", i), n)
+	nest := 1
+	ast.Inspect(e, func(n ast.Node) bool {
+		fmt.Printf("%s%[2]T %[2]v\n", strings.Repeat("\t", nest), n)
 		if n != nil {
-			i++
+			nest++
 		} else {
-			i--
+			nest--
 		}
 		return true
 	})
-	format.Node(os.Stdout, token.NewFileSet(), a)
-	println()
-}
 
-func applay() {
-	a, err := parser.ParseExpr(`1+12`)
-	if err != nil {
-		panic(err)
-	}
-	fmt.Println(a)
+	os.Stdout.WriteString("\t")
+	format.Node(os.Stdout, token.NewFileSet(), e)
 }
 
 func main() {
-	split("helloParser()")
-	helloParser()
-	split("expr()")
+	fmt.Println("parse():")
+	parse()
+	fmt.Printf("\n\n")
+
+	fmt.Println("expr():")
 	expr()
-	split("applay()")
-	applay()
+	fmt.Printf("\n\n")
 }

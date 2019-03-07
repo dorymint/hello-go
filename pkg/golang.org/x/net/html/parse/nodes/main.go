@@ -2,6 +2,7 @@ package main
 
 import (
 	"bytes"
+	"flag"
 	"fmt"
 	"io/ioutil"
 	"path/filepath"
@@ -18,9 +19,16 @@ var ntm = map[html.NodeType]string{
 	html.DoctypeNode:  "DoctypeNode",
 }
 
+var file string
+
+func init() {
+	flag.StringVar(&file, "html", filepath.Join("testdata", "test.html"), "path to html")
+}
+
 func main() {
-	testdata := filepath.Join("testdata", "test1.html")
-	b, err := ioutil.ReadFile(testdata)
+	flag.Parse()
+
+	b, err := ioutil.ReadFile(file)
 	if err != nil {
 		panic(err)
 	}
@@ -29,26 +37,30 @@ func main() {
 	if err != nil {
 		panic(err)
 	}
-	fmt.Printf("*html.Node:%T\n", n)
-	fmt.Printf("*html.Node:%+v\n\n", n)
 
+	fmt.Printf("*html.Node:%T\n\n", n)
+
+	var s string
 	var f func(*html.Node)
 	f = func(n *html.Node) {
-		fmt.Printf("// *html.Node:%v\n", n)
-		s := fmt.Sprintf("n.Type:%v\n", ntm[n.Type])
+		s += fmt.Sprintf("// *html.Node:%+v\n", n)
+		s += fmt.Sprintf("n.Type:%v\n", ntm[n.Type])
+		s += fmt.Sprintf("n.Data:%#v\n", n.Data)
+		s += fmt.Sprintf("n.DataAtom:%v\n", n.DataAtom)
+		s += fmt.Sprintf("n.Namespace:%v\n", n.Namespace)
+		s += fmt.Sprintf("n.Attr:\n")
 		if len(n.Attr) != 0 {
-			s += fmt.Sprintf("\tn.Attr:\n")
 			for _, attr := range n.Attr {
-				s += fmt.Sprintf("\t\t%v\n", attr)
+				s += fmt.Sprintf("\t%+v\n", attr)
 			}
 		}
-		s += fmt.Sprintf("\tn.Data:%v\n", n.Data)
-		s += fmt.Sprintf("\tn.DataAtom:%v\n", n.DataAtom)
 		s += "\n"
-		fmt.Println(s)
+
+		// tail recursion
 		for c := n.FirstChild; c != nil; c = c.NextSibling {
 			f(c)
 		}
 	}
 	f(n)
+	fmt.Println(s)
 }

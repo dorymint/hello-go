@@ -1,35 +1,42 @@
+// for, switch, break.
 package main
 
 import (
 	"fmt"
 )
 
-func main() {
+func canNotBreakLoop() {
 	fmt.Println("--- can not break the for loops ---")
 	for i := 0; i < 10; i++ {
 		switch i {
 		case 3:
-			fmt.Println("hello")
+			fmt.Printf("%d hello\n", i)
 		case 4:
-			fmt.Printf("can not break!\n")
-			fmt.Printf("if you want to stop the for loop then use label\n")
+			fmt.Printf("%d expected break the loop but can not\n", i)
 			break
 		default:
 			fmt.Println(i)
 		}
 	}
+}
 
+func breakLoop() {
 	fmt.Println("--- label break ---")
 L:
 	for i := 0; i < 10; i++ {
 		switch i {
 		case 3:
-			fmt.Println("hello")
+			fmt.Printf("%d hello\n", i)
 		case 4:
-			fmt.Println("break")
+			fmt.Printf("%d break\n", i)
 			break L
 		default:
 			fmt.Println(i)
 		}
 	}
+}
+
+func main() {
+	canNotBreakLoop()
+	breakLoop()
 }

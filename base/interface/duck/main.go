@@ -1,3 +1,4 @@
+// duck typing.
 package main
 
 import (

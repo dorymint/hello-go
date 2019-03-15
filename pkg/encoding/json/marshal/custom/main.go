@@ -1,3 +1,4 @@
+// custom marshal.
 package main
 
 import (

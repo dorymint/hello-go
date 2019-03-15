@@ -1,3 +1,4 @@
+// chan int.
 package main
 
 import (

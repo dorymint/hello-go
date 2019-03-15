@@ -1,6 +1,9 @@
+// check the race condition.
+//
+//   go test -v -race
+//
 package main
 
-// go test -v -race
 
 import (
 	"fmt"

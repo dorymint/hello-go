@@ -1,6 +1,6 @@
+// blank import.
 package main
 
-// blank import
 import _ "fmt"
 
 func main() {

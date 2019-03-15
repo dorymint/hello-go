@@ -1,3 +1,4 @@
+// sync.WaitGroup.
 package main
 
 import (

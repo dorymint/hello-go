@@ -1,3 +1,8 @@
+// make map.
+//
+//	newMap := make(map[Tyep]Type)
+//	newMapWithSpace := make(map[Tyep]Type, NumberOfElements)
+//
 package main
 
 import (
@@ -5,24 +10,24 @@ import (
 )
 
 func main() {
-	m := make(map[string]int)
-	m["one"] = 1
-	m["two"] = 2
-	fmt.Printf("%q\n", m)
-	fmt.Println("len", len(m))
-	fmt.Println("one", m["one"])
+	var m map[string]int
+	printLen := func() func() {
+		var n int
+		return func() {
+			fmt.Printf("%d:\n", n)
+			fmt.Printf("  %+v:\n", m)
+			fmt.Printf("  Len:%d\n\n", len(m))
+			n++
+		}
+	}()
 
-	{
-		i, ok := m["one"]
-		fmt.Printf("i=%d ok=%v\n", i, ok)
-	}
+	m = make(map[string]int)
+	printLen()
 
+	// with number of elements
+	m = make(map[string]int, 100)
+	printLen() // not different output
 
-	{
-		delete(m, "one")
-		i, ok := m["one"]
-		fmt.Println("after delete key of \"one\"")
-		fmt.Printf("i=%d ok=%v\n", i, ok)
-		fmt.Println("len", len(m))
-	}
+	m = map[string]int{}
+	printLen()
 }

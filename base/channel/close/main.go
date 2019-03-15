@@ -1,3 +1,4 @@
+// close channel.
 package main
 
 import (

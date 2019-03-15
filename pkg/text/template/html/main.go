@@ -1,4 +1,7 @@
-// go run main.go > out.html && $BROWSER out.html
+// html.
+//
+//	go run main.go > out.html && $BROWSER out.html
+//
 package main
 
 import (

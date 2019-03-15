@@ -1,3 +1,7 @@
+// range ch.
+//
+//   for i := range ch {}
+//
 package main
 
 import (

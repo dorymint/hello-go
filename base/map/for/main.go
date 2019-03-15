@@ -1,3 +1,7 @@
+// for range map.
+//
+//	for key, val := range MAP {}
+//
 package main
 
 import (
@@ -7,7 +11,7 @@ import (
 func forMap(m map[int]bool) {
 	c := 0
 	for key, b := range m {
-		fmt.Printf("%#v=%q\n", key, b)
+		fmt.Printf("%#v=%v\n", key, b)
 		c++
 	}
 	fmt.Printf("%d loops\n", c)

@@ -1,3 +1,4 @@
+// for select.
 package main
 
 import (
@@ -13,7 +14,7 @@ func main() {
 
 	go func() {
 		defer func() {
-			fmt.Println("print deamon exited")
+			fmt.Println("exit goroutine")
 			wg.Done()
 		}()
 		for {

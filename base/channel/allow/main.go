@@ -1,3 +1,4 @@
+// limitation.
 package main
 
 import (
@@ -10,22 +11,22 @@ func sendCh() chan<- string {
 	return ch
 }
 
-func receive() <-chan string {
+func receiveCh() <-chan string {
 	return ch
 }
 
 func main() {
 	sch := sendCh()
-	rch := receive()
+	rch := receiveCh()
 
 	go func() {
 		sch <- "hello"
 	}()
 	fmt.Println(<-rch)
 
-	// compile error, allowed only send
+	// compile error, allow only send
 	//fmt.Println(<-sch)
 
-	// compile error, allowed only receive
+	// compile error, allow only receive
 	//rch <- "hi"
 }

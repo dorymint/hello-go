@@ -1,3 +1,7 @@
+// need care case of pointer used.
+//
+//   for _, v := range []*struct {}
+//
 package main
 
 import "fmt"

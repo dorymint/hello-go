@@ -1,3 +1,4 @@
+// example for append.
 package main
 
 import "fmt"

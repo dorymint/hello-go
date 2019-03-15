@@ -1,3 +1,4 @@
+// compact.
 package main
 
 import (

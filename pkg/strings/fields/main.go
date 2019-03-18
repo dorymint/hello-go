@@ -20,6 +20,6 @@ func main() {
 
 	ck("name arg1 arg2")
 	ck(" name arg1	arg2		")
-	ck(`cmd "arg1 arg2"`)
+	ck(`cmd "arg1 arg2" arg3`)
 	ck(`cmd."arg1.arg2".arg3`)
 }

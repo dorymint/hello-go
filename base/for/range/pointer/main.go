@@ -1,6 +1,6 @@
 // need care case of pointer used.
 //
-//   for _, v := range []*struct {}
+//	for _, v := range []*struct {}
 //
 package main
 

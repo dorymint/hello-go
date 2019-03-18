@@ -6,37 +6,16 @@ import (
 )
 
 func main() {
-	fmt.Println("nil length")
-	{
-		var n []string
-		fmt.Println("len",
-			len(n),
-			len([]string{}),
-			len(*new([]string)),
-		)
+	ss := []string{"hello world"}
+	printss := func() {
+		fmt.Printf("%q\n\tlen:%d\n\n", ss, len(ss))
 	}
 
-	fmt.Printf("\nslice caps\n")
-	{
-		n := []string{"hello", "world"}
-		fmt.Println("len",
-			len(n),
-			len(n[1:]),
-			"cap",
-			cap(n),
-			cap(n[1:]),
-		)
-	}
+	printss()
 
-	fmt.Printf("\nslice pointer\n")
-	{
-		n := []int{1, 2, 3}
-		fmt.Printf("pointer n =%p &n =%p\n", n, &n)
-		n2 := n[1:]
-		fmt.Printf("pointer n2=%p &n2=%p\n", n2, &n2)
-		fmt.Println("is same?", &n == &n2)
+	ss = append(ss, "foo", "bar")
+	printss()
 
-		fmt.Printf("&n[1] %p\n", &n[1])
-		fmt.Printf("n2    %p\n", n2)
-	}
+	s := "hello world"
+	fmt.Printf("max:%s\n", string(s[len(s):]))
 }

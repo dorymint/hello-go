@@ -1,19 +1,30 @@
+// parse.
 package main
 
 import (
 	"flag"
 	"fmt"
+	"os"
 )
 
-var flagvar int
-
 func main() {
-	flag.IntVar(&flagvar, "flagvar", 0, "error test flagvar")
-	fmt.Println(flagvar)
+	var v int
+	flag.IntVar(&v, "v", 0, "parse example")
+	fmt.Println(v)
 
-	// Input:
-	// -flagvar=errortest
-	flag.Parse() // Parse error, runtimeerror
-	// os.Exit
-	fmt.Println(flagvar) // this do not run
+	// input
+	os.Args = []string{"cmdname", "-v", "100"}
+	flag.Parse()
+	fmt.Println(v)
+
+	os.Args = []string{"cmdname", "-v", "want error"}
+
+	// unreachable
+	defer fmt.Println(recover())
+
+	// call os.Exit in flag.Parse
+	flag.Parse()
+
+	// unreachable
+	fmt.Println(v)
 }

@@ -1,3 +1,4 @@
+// fib.
 package main
 
 import (
@@ -5,32 +6,8 @@ import (
 	"math/big"
 )
 
-func split(str string) {
-	fmt.Println("----------", str, "----------")
-}
-
-func helloBig() {
-	const b = 1 << 63 -1
-	fmt.Println(b)
-	bigInt := new(big.Int).SetInt64(b)
-	fmt.Println("bigInt:", new(big.Int).Add(bigInt,bigInt))
-
-	x := new(big.Int)
-	y := new(big.Int)
-	x.SetInt64(10)
-	y.SetInt64(30)
-	fmt.Println("x,y", x, y)
-
-	z := new(big.Int).Add(x, y)
-	fmt.Println("z", z)
-	z.Add(z, z)
-	fmt.Println("z", z)
-
-	fmt.Println("Exp x x", new(big.Int).Exp(x, x, nil))
-}
-
-func fib() {
-	fib := make([]*big.Int, 100)
+func fib(count int) {
+	fib := make([]*big.Int, count)
 	for i := range fib {
 		fib[i] = new(big.Int)
 	}
@@ -45,8 +22,5 @@ func fib() {
 }
 
 func main() {
-	split("helloBig")
-	helloBig()
-	split("fib")
-	fib()
+	fib(100)
 }

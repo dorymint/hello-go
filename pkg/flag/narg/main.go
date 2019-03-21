@@ -1,4 +1,4 @@
-// NFlag.
+// NAlag.
 package main
 
 import (
@@ -8,12 +8,12 @@ import (
 
 func main() {
 	fs := flag.NewFlagSet("nargtest", flag.ExitOnError)
-	_ = fs.Bool("version", false, "Display version")
+	_ = fs.Bool("version", false, "print version")
 
 	args := []string{"-version", "hello", "world"}
 	if err := fs.Parse(args); err != nil {
 		panic(err)
 	}
 
-	fmt.Println("nflag", fs.NFlag())
+	fmt.Printf("NFlag:%d\n", fs.NArg())
 }

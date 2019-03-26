@@ -1,4 +1,4 @@
-// boolean.
+// Not.
 package main
 
 import "fmt"

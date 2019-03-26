@@ -1,4 +1,4 @@
-// parcent.
+// percent.
 package main
 
 import "fmt"

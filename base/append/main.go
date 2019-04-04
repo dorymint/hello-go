@@ -1,4 +1,4 @@
-// example for append.
+// append to slice.
 package main
 
 import "fmt"

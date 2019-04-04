@@ -9,7 +9,8 @@ func main() {
 	// not locked
 	closeCh := make(chan string)
 	close(closeCh)
-	fmt.Printf("closeCh %v\n", <-closeCh)
+	<-closeCh
+	fmt.Printf("not locked\n")
 
 	// with buffer
 	ch := make(chan int, 30)

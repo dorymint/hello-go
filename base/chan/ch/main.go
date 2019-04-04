@@ -1,4 +1,4 @@
-// channel.
+// basic usage.
 package main
 
 import (

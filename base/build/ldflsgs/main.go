@@ -1,5 +1,4 @@
 // Usage of `ldflags`.
-
 /*
 Append version information from git tags
 
@@ -10,9 +9,7 @@ Append version information from git tags
 	go build -ldflags "-X main.Version=$VERSION"
 	#or
 	go run -ldflags "-X main.Version=$VERSION"
-
 */
-
 package main
 
 import "fmt"

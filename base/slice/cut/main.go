@@ -1,12 +1,17 @@
-// bound of length.
+// slice.
 package main
 
 import "fmt"
 
 func main() {
-	ss := []string{}
-	defer func() {
-		fmt.Println(recover())
-	}()
-	_ = ss[1:]
+	i := 0
+	lc := func(ss []string) {
+		fmt.Printf("%d len:%d cap:%d %+q\n", i, len(ss), cap(ss), ss)
+		i++
+	}
+	ss := []string{"hello", "world"}
+
+	lc(ss)
+	lc(ss[0:])
+	lc(ss[:0])
 }

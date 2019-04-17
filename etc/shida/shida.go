@@ -1,6 +1,4 @@
-// from
-// http://qiita.com/qt-luigi/items/ec6cd349259fe6cc29eb
-
+// ref <http://qiita.com/qt-luigi/items/ec6cd349259fe6cc29eb>.
 package main
 
 import (
@@ -9,7 +7,6 @@ import (
 	"image/color"
 	"image/draw"
 	"image/png"
-	"log"
 	"math/rand"
 	"os"
 	"time"
@@ -23,9 +20,8 @@ var (
 )
 
 var (
-	width    int    = 500
-	height   int    = 500
-	filename string = "shida.png"
+	width  int = 500
+	height int = 500
 )
 
 var (
@@ -102,14 +98,16 @@ func main() {
 
 	f(m, N, 0, 0)
 
-	file, err := os.Create(filename)
+	filename := "shida.png"
+	f, err := os.OpenFile(filename, os.O_WRONLY|os.O_CREATE|os.O_EXCL, 0600)
 	if err != nil {
-		log.Fatal(err)
+		panic(err)
 	}
-	defer file.Close()
+	defer f.Close()
 
-	err = png.Encode(file, m)
+	err = png.Encode(f, m)
 	if err != nil {
-		log.Fatal(err)
+		panic(err)
 	}
+	fmt.Printf("writed to %s\n", filename)
 }

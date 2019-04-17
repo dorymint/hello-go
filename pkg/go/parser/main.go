@@ -36,7 +36,7 @@ func parse() {
 	}
 
 	fmt.Println("Decls:")
-	for i := 0; i < len(f.Decls); i++ {
+	for i := range f.Decls {
 		fmt.Printf("\t%+v\n", f.Decls[i])
 		fmt.Printf("\t%+v\n", f.Decls[i].Pos())
 		fmt.Printf("\t%+v\n", fset.Position(f.Decls[i].Pos()))

@@ -1,4 +1,4 @@
-// benchmark.
+// benchmark/if.
 //
 //	go test -bench .
 //
@@ -16,15 +16,15 @@ var Map = func() map[string]*string {
 }()
 
 // key val
-var Pare = map[string]string{
+var Paire = map[string]string{
 	"hello": "world",
 	"foo":   "bar",
 }
 
-func IF1(pare map[string]string) bool {
+func If(paire map[string]string) bool {
 	nmap := len(Map)
 	if nmap != 0 {
-		for key, val := range pare {
+		for key, val := range paire {
 			p, ok := Map[key]
 			if ok && (p == nil || *p == val) {
 				nmap--
@@ -34,10 +34,10 @@ func IF1(pare map[string]string) bool {
 	return nmap == 0
 }
 
-func IF2(pare map[string]string) bool {
+func IfContinue(paire map[string]string) bool {
 	nmap := len(Map)
 	if nmap != 0 {
-		for key, val := range pare {
+		for key, val := range paire {
 			p, ok := Map[key]
 			if !ok {
 				continue
@@ -50,16 +50,16 @@ func IF2(pare map[string]string) bool {
 	return nmap == 0
 }
 
-func BenchmarkIF1(b *testing.B) {
+func BenchmarkIf(b *testing.B) {
 	b.ResetTimer()
 	for i := 0; i < b.N; i++ {
-		IF1(Pare)
+		If(Paire)
 	}
 }
 
-func BenchmarkIF2(b *testing.B) {
+func BenchmarkIfContinue(b *testing.B) {
 	b.ResetTimer()
 	for i := 0; i < b.N; i++ {
-		IF2(Pare)
+		IfContinue(Paire)
 	}
 }

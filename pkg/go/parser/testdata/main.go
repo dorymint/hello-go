@@ -14,6 +14,10 @@ import (
 
 var nyan = flag.String("n", "(,,ﾟДﾟ)", "giko nyan")
 
+type Struct struct {
+	Name string
+}
+
 func hi() { print("hi") }
 
 func main() {
